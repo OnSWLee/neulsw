@@ -1,0 +1,15 @@
+node_modules
+dist
+.turbo
+.DS_Store
+.env
+**/node_modules
+**/dist
+coverage
+.vite
+.pnpm-store
+
+
+
+
+
