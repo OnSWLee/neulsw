@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { apiUrl } from "../lib/api";
 
 interface BlogPost {
   id: string;
@@ -27,7 +28,7 @@ function AdminDashboard() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch("/api/blog?limit=100", {
+      const response = await fetch(apiUrl("/api/blog?limit=100"), {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -52,7 +53,7 @@ function AdminDashboard() {
     }
 
     try {
-      const response = await fetch(`/api/blog/${id}`, {
+      const response = await fetch(apiUrl(`/api/blog/${id}`), {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`

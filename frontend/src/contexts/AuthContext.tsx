@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { apiUrl } from "../lib/api";
 
 interface User {
   id: string;
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const login = async (username: string, password: string) => {
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(apiUrl("/api/auth/login"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -90,7 +91,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     birthDate: string
   ) => {
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(apiUrl("/api/auth/register"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

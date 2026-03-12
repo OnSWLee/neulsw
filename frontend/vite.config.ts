@@ -10,7 +10,7 @@ export default defineConfig({
     host: "0.0.0.0",
     proxy: {
       "/api": {
-        target: "http://backend:3000",
+        target: process.env.VITE_PROXY_TARGET || "http://backend:3000",
         changeOrigin: true,
         secure: false
       }

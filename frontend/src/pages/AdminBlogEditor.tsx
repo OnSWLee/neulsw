@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { apiUrl } from "../lib/api";
 
 function AdminBlogEditor() {
   const { id } = useParams<{ id?: string }>();
@@ -29,7 +30,7 @@ function AdminBlogEditor() {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`/api/blog/${id}`, {
+      const response = await fetch(apiUrl(`/api/blog/${id}`), {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -57,9 +58,7 @@ function AdminBlogEditor() {
     setIsLoading(true);
 
     try {
-      const url = isEditMode
-        ? `/api/blog/${id}`
-        : "/api/blog";
+      const url = apiUrl(isEditMode ? `/api/blog/${id}` : "/api/blog");
       const method = isEditMode ? "PUT" : "POST";
 
       const response = await fetch(url, {
