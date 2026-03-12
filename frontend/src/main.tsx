@@ -5,9 +5,11 @@ import { AuthProvider } from "./contexts/AuthContext";
 import App from "./App";
 import "./index.css";
 
+const basePath = (import.meta.env.VITE_BASE_PATH || "/").replace(/\/+$/, "") || "";
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basePath}>
       <AuthProvider>
         <App />
       </AuthProvider>

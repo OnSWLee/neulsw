@@ -14,6 +14,7 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 
 const Reviews = lazy(() => import("./pages/Reviews"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const SanityAdmin = lazy(() => import("./pages/SanityAdmin"));
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/clinics/immunity" element={<ClinicCoreImmunity />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/admin" element={<SanityAdmin />} />
             <Route path="/admin/legacy" element={<AdminDashboard />} />
             <Route path="/admin/blog/new" element={<AdminBlogEditor />} />

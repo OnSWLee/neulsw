@@ -26,7 +26,7 @@ app.use("/api/blog", blogRouter);
 
 app.get("/", (_req, res) => {
   res.json({
-    name: "Kyunghee Neulpum Clinic API",
+    name: "neulsw API",
     status: "ok"
   });
 });

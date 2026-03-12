@@ -3,7 +3,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: kyunghee-frontend
+    container_name: neulsw-frontend
     restart: unless-stopped
     ports:
       - "4173:4173"
@@ -16,7 +16,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: kyunghee-backend
+    container_name: neulsw-backend
     restart: unless-stopped
     ports:
       - "3000:3000"

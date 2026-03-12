@@ -1,11 +1,11 @@
-name: kyunghee-clinic
+name: neulsw
 
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
-    container_name: kyunghee-frontend-dev
+    container_name: neulsw-frontend-dev
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -22,7 +22,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-    container_name: kyunghee-backend-dev
+    container_name: neulsw-backend-dev
     restart: unless-stopped
     ports:
       - "5000:3000"
@@ -43,7 +43,7 @@ services:
     build:
       context: ./sanity-studio
       dockerfile: Dockerfile.dev
-    container_name: kyunghee-sanity-studio-dev
+    container_name: neulsw-sanity-studio-dev
     restart: unless-stopped
     ports:
       - "3333:3333"
