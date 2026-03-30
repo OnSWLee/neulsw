@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import SectionCard from "../components/SectionCard";
 
 const clinicData = [
@@ -20,7 +19,7 @@ function Clinics() {
       >
         <div className="flex flex-col gap-6">
           {clinicData.map((clinic) => (
-            <Link key={clinic.to} to={clinic.to} className="group">
+            <a key={clinic.to} href={clinic.to} className="group">
               <div className="h-full rounded-2xl border border-slate-100 bg-cream-white p-5 shadow-card transition hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="text-lg font-semibold text-primary-900">
@@ -31,7 +30,7 @@ function Clinics() {
                   </span>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </SectionCard>

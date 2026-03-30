@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Home() {
   return (
     <div className="min-h-screen bg-cream-white">
@@ -150,7 +148,7 @@ function Home() {
                 title: "면역 치료란?"
               }
             ].map((clinic) => (
-              <Link key={clinic.to} to={clinic.to} className="group">
+              <a key={clinic.to} href={clinic.to} className="group">
                 <div className="h-full rounded-2xl border border-slate-100 bg-cream-white p-5 shadow-card transition hover:-translate-y-1 hover:shadow-lg">
                   <div className="flex items-center justify-between gap-2">
                     <h3 className="text-lg font-semibold text-primary-900">
@@ -161,7 +159,7 @@ function Home() {
                     </span>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
