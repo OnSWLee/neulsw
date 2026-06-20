@@ -13,6 +13,7 @@ const links = [
 
 export default function NextNavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { isAuthenticated, isAdmin, user, logout } = useAuth();
 
@@ -22,6 +23,38 @@ export default function NextNavBar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [router.pathname]);
+
+  const isActive = (href: string) =>
+    router.pathname === href || (href !== "/" && router.pathname.startsWith(href));
+
+  const authLinks = isAuthenticated ? (
+    <div className="flex flex-col gap-3 md:flex-row md:items-center">
+      {isAdmin && (
+        <Link href="/admin" className="text-slate-600 transition hover:text-slate-900">
+          관리자
+        </Link>
+      )}
+      <span className="text-slate-600">{user?.name}님</span>
+      <button
+        type="button"
+        className="text-left text-slate-600 transition hover:text-slate-900 md:text-center"
+        onClick={() => {
+          logout();
+          router.push("/");
+        }}
+      >
+        로그아웃
+      </button>
+    </div>
+  ) : (
+    <Link href="/login" className="text-slate-600 transition hover:text-slate-900">
+      로그인
+    </Link>
+  );
 
   return (
     <header
@@ -42,40 +75,52 @@ export default function NextNavBar() {
               href={link.href}
               className={clsx(
                 "transition hover:text-slate-900",
-                router.pathname === link.href || (link.href !== "/" && router.pathname.startsWith(link.href))
-                  ? "font-medium text-slate-900"
-                  : "text-slate-600"
+                isActive(link.href) ? "font-medium text-slate-900" : "text-slate-600"
               )}
             >
               {link.label}
             </Link>
           ))}
-          {isAuthenticated ? (
-            <div className="flex items-center gap-3">
-              {isAdmin && (
-                <Link href="/admin" className="text-slate-600 transition hover:text-slate-900">
-                  관리자
-                </Link>
-              )}
-              <span className="text-slate-600">{user?.name}님</span>
-              <button
-                type="button"
-                className="text-slate-600 transition hover:text-slate-900"
-                onClick={() => {
-                  logout();
-                  router.push("/");
-                }}
-              >
-                로그아웃
-              </button>
-            </div>
-          ) : (
-            <Link href="/login" className="text-slate-600 transition hover:text-slate-900">
-              로그인
-            </Link>
-          )}
+          {authLinks}
         </nav>
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 md:hidden"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span className="sr-only">{menuOpen ? "메뉴 닫기" : "메뉴 열기"}</span>
+          {menuOpen ? (
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
       </div>
+      {menuOpen && (
+        <nav className="border-t border-slate-200 bg-cream-white px-6 py-4 md:hidden">
+          <div className="flex flex-col gap-4 text-sm">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={clsx(
+                  "transition hover:text-slate-900",
+                  isActive(link.href) ? "font-medium text-slate-900" : "text-slate-600"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            {authLinks}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

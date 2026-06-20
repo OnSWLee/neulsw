@@ -3,11 +3,11 @@ import SectionCard from "../components/SectionCard";
 const clinicData = [
   {
     to: "/clinics/thyroid",
-    title: "갑상선 클리닉"
+    title: "생약과 면역 치료"
   },
   {
     to: "/clinics/immunity",
-    title: "면역 치료란?"
+    title: "도담 약침 치료"
   }
 ];
 
