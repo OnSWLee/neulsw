@@ -18,24 +18,33 @@ export const users: User[] = [];
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
 
-// 기본 관리자 계정 생성 함수 (index.ts에서 호출)
-export const initializeAdmin = async () => {
-  const DEFAULT_ADMIN_USERNAME = "admin";
-  const DEFAULT_ADMIN_PASSWORD = "admin123"; // 실제로는 더 강력한 비밀번호 사용
+const getAdminCredentials = () => ({
+  username: process.env.ADMIN_USERNAME || "admin",
+  password: process.env.ADMIN_PASSWORD || "admin123",
+});
 
-  const existingAdmin = users.find((u) => u.username === DEFAULT_ADMIN_USERNAME);
+// 기본 관리자 계정 생성/동기화 (서버 시작 시 호출)
+export const initializeAdmin = async () => {
+  const { username, password } = getAdminCredentials();
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const existingAdmin = users.find((u) => u.username === username);
   if (!existingAdmin) {
-    const hashedPassword = await bcrypt.hash(DEFAULT_ADMIN_PASSWORD, 10);
     users.push({
       id: "admin-1",
-      username: DEFAULT_ADMIN_USERNAME,
+      username,
       password: hashedPassword,
       name: "관리자",
       birthDate: "1990-01-01",
-      isAdmin: true
+      isAdmin: true,
     });
-    console.log("기본 관리자 계정이 생성되었습니다. (username: admin, password: admin123)");
+    console.log(`관리자 계정이 생성되었습니다. (username: ${username})`);
+    return;
   }
+
+  existingAdmin.password = hashedPassword;
+  existingAdmin.isAdmin = true;
+  console.log(`관리자 계정이 준비되었습니다. (username: ${username})`);
 };
 
 // 디버그: 사용자 목록 확인 (개발용)

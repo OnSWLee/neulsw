@@ -17,7 +17,9 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       await login(username, password);
-      await router.push("/reviews");
+      const savedUser = localStorage.getItem("user");
+      const parsedUser = savedUser ? JSON.parse(savedUser) : null;
+      await router.push(parsedUser?.isAdmin ? "/admin" : "/blog");
     } catch (err) {
       setError(err instanceof Error ? err.message : "로그인에 실패했습니다.");
     } finally {

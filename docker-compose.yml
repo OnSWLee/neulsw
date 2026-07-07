@@ -1,35 +1,74 @@
+# 로컬 개발: 프론트엔드 + 백엔드 + Sanity Studio 한 번에 실행
+# docker compose up --build
+
+name: neulsw
+
 services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    container_name: neulsw-frontend
+      dockerfile: Dockerfile.dev
+    container_name: neulsw-frontend-dev
     restart: unless-stopped
     ports:
-      - "4173:4173"
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+      - NEXT_PUBLIC_SANITY_PROJECT_ID=hlql019b
+      - NEXT_PUBLIC_SANITY_DATASET=production
+      - NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+    command: sh -c "npm install && npm run dev -- -H 0.0.0.0 -p 3000"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    container_name: neulsw-backend
+      dockerfile: Dockerfile.dev
+    container_name: neulsw-backend-dev
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "5000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=neulsw-dev-secret
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+      - SANITY_PROJECT_ID=hlql019b
+      - SANITY_DATASET=production
+    command: sh -c "npm install && npm run dev"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 10s
       timeout: 5s
-      retries: 3
-      start_period: 10s
+      retries: 5
+      start_period: 20s
 
-
-
-
-
+  sanity-studio:
+    build:
+      context: ./sanity-studio
+      dockerfile: Dockerfile.dev
+    container_name: neulsw-sanity-studio-dev
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./sanity-studio:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - SANITY_STUDIO_PROJECT_ID=hlql019b
+      - SANITY_STUDIO_DATASET=production
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 3333"

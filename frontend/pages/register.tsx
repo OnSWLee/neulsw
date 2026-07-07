@@ -23,7 +23,7 @@ export default function RegisterPage() {
     setIsLoading(true);
     try {
       await register(username, password, name, birthDate);
-      await router.push("/reviews");
+      await router.push("/blog");
     } catch (err) {
       setError(err instanceof Error ? err.message : "회원가입에 실패했습니다.");
     } finally {
