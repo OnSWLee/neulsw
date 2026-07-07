@@ -1,9 +1,27 @@
+import Link from "next/link";
+
 function Home() {
   return (
     <div className="min-h-screen bg-cream-white">
       {/* 인사말 및 의사 소개 섹션 */}
       <section id="about-doctor" className="doctor-profile-section mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="space-y-8 md:space-y-12">
+          <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-200 shadow-card">
+            <img
+              src="/images/home/profile.jpg"
+              alt="이승욱 대표원장"
+              className="aspect-[4/5] w-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src.includes(".jpg")) {
+                  target.src = "/images/home/profile.png";
+                } else if (target.src.includes(".png")) {
+                  target.src = "/images/doctor/doctor-photo.png";
+                }
+              }}
+            />
+          </div>
+
           {/* 섹션 1: 인사말 */}
           <div className="space-y-4">
             <h1 className="text-3xl font-semibold text-slate-900 md:text-4xl">
@@ -45,6 +63,24 @@ function Home() {
                 한의학의 생약 치료가 가진 효용을 객관적인 임상 데이터를 바탕으로 공유하고자 합니다. 관심 있으신 분들은 제가 작성한 글들을 천천히 읽어보시길 권합니다. 오랜 고통을 끝낼 근본적인 방법을 찾을 수 있을겁니다.
               </p>
             </article>
+
+            <div className="mx-auto mt-4 max-w-xl rounded-2xl border-2 border-primary-200 bg-gradient-to-br from-primary-50 via-white to-beige-50 p-6 text-center shadow-card md:mt-6 md:p-8">
+              <p className="text-lg font-semibold tracking-wide text-primary-700 md:text-xl">
+                더 자세한 이야기가 궁금하다면?
+              </p>
+              <Link
+                href="/doctor"
+                className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-primary-700 px-8 py-4 text-base font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-xl md:mt-6 md:text-lg"
+              >
+                About me
+                <span
+                  aria-hidden="true"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-lg"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -53,17 +89,17 @@ function Home() {
       <section className="bg-cream-white py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 md:text-3xl">
-            더 자세한 이야기가 궁금하다면?
+            어떻게 치료하나요?
           </h2>
           <div className="flex flex-col gap-6">
             {[
               {
                 to: "/clinics/thyroid",
-                title: "생약과 면역 치료"
+                title: "생약 호르몬 클리닉"
               },
               {
                 to: "/clinics/immunity",
-                title: "도담 약침 치료"
+                title: "척추관절 클리닉"
               }
             ].map((clinic) => (
               <a key={clinic.to} href={clinic.to} className="group">

@@ -1,46 +1,159 @@
-import SectionCard from "../components/SectionCard";
+function PhotoPlaceholder({ label }: { label: string }) {
+  return (
+    <div
+      className="flex aspect-[4/3] w-full items-center justify-center rounded-lg border border-slate-100 bg-slate-200 shadow-card"
+      aria-label={label}
+    >
+      <span className="text-sm text-slate-500">사진 준비 중</span>
+    </div>
+  );
+}
+
+function StatArrow({
+  direction,
+  badge,
+  leftValue,
+  leftLabel,
+  rightValue,
+  rightLabel,
+}: {
+  direction: "up" | "down";
+  badge: string;
+  leftValue: string;
+  leftLabel: string;
+  rightValue: string;
+  rightLabel: string;
+}) {
+  const path =
+    direction === "up"
+      ? "M 28 98 Q 120 18 212 38"
+      : "M 28 38 Q 120 102 212 82";
+  const arrowHead =
+    direction === "up" ? "212,38 204,50 220,46" : "212,82 204,70 220,74";
+
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div className="relative mx-auto mb-8 h-40 w-full max-w-[300px] overflow-visible md:h-44 md:max-w-[340px]">
+        <svg
+          viewBox="0 0 240 120"
+          className="h-full w-full overflow-visible"
+          aria-hidden="true"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <path
+            d={path}
+            fill="none"
+            stroke="#1A3C34"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <polygon points={arrowHead} fill="#1A3C34" />
+        </svg>
+        <span className="absolute left-1/2 top-1/2 flex h-[4.5rem] w-[4.5rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 px-2 text-xs font-bold leading-tight text-white md:h-20 md:w-20 md:text-sm">
+          {badge}
+        </span>
+      </div>
+      <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
+        <div>
+          <p className="text-2xl font-bold text-slate-900 md:text-3xl">{leftValue}</p>
+          <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">{leftLabel}</p>
+        </div>
+        <div>
+          <p className="text-2xl font-bold text-slate-900 md:text-3xl">{rightValue}</p>
+          <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">{rightLabel}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ClinicCoreImmunity() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-10">
-      <SectionCard
-        title="면역 치료란?"
-        subtitle="말초신경 회복과 면역 체계 강화를 통한 근본적 건강 회복"
-      >
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="space-y-3 text-sm text-slate-700">
-            <div className="font-semibold text-primary-900">진료 범위</div>
-            <ul className="list-disc space-y-2 pl-5">
-              <li>당뇨성 말초신경병증, 항암 후 신경병증</li>
-              <li>저림·시림, 근력 저하, 자율신경 불균형</li>
-              <li>만성 피로, 번아웃, 수면·스트레스 불균형</li>
-              <li>면역 약화, 잦은 감기, 회복이 느린 체질</li>
-              <li>호르몬 리듬 변동에 따른 컨디션 기복</li>
-              <li>목·허리 디스크, 협착증과 동반된 신경 증상</li>
-            </ul>
-          </div>
-          <div className="space-y-3 rounded-xl bg-primary-50 p-4 text-sm text-primary-900">
-            <div className="font-semibold">치료 포인트</div>
-            <p>
-              침·약침으로 신경 주위 순환을 개선하고, 신경재생을 돕는 한약
-              처방과 면역 강화 Adaptogen 성분을 결합해 말초신경 증상과 면역 체계를
-              동시에 회복시킵니다.
-            </p>
-            <p>
-              Rhodiola, Schisandra 등 Adaptogen 성분과 체질에 맞춘 한약을 통해
-              스트레스 적응력과 에너지 대사를 향상시키고, 혈당 관리, 항산화·항염
-              영양 가이드, 수면 리듬 교정을 함께 진행합니다.
-            </p>
-            <p>
-              HRV·수면 패턴 등 객관 지표를 활용한 모니터링과 식이·호흡·수면
-              루틴 코칭으로 지속 가능한 컨디션 관리를 지원합니다.
-            </p>
+    <div className="min-h-screen bg-cream-white">
+      <section className="mx-auto max-w-6xl px-6 py-12 text-center md:py-16">
+        <h1 className="text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
+          원인을 치료하는 초음파 유도 약침시술
+        </h1>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-xl font-bold text-primary-900 md:text-2xl">01 초음파 기기</h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
+            고해상도 초음파 기기를 활용하여 통증의 원인을 정확하게 진단한 이후 삽입되는 침을 실시간으로
+            확인하면서 치료를 진행합니다.
+          </p>
+          <div className="mt-8">
+            <PhotoPlaceholder label="초음파 기기 사진" />
           </div>
         </div>
-      </SectionCard>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 md:grid-cols-2 md:gap-12 md:pb-16">
+        <div className="md:order-1">
+          <h2 className="text-xl font-bold text-primary-900 md:text-2xl">02 도담약침</h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
+            도담약침은 생약에서 멸균 및 증류 추출한 성분을 활용해 신경 압박을 완화하고 조직을
+            재생시키며 통증을 완화하는 효능이 있습니다.
+          </p>
+        </div>
+        <div className="md:order-2">
+          <PhotoPlaceholder label="도담약침 사진" />
+        </div>
+      </section>
+
+      <section className="border-t border-slate-100 bg-cream-white px-6 py-12 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3 md:gap-8">
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
+            <h3 className="mb-2 text-center text-base font-semibold text-slate-900 md:text-lg">시술정확도비교</h3>
+            <p className="mb-6 text-center text-[10px] leading-relaxed text-slate-500 md:text-xs">
+              *출처: 대한내과학회지 제89권 제6호 통권제684호(2015)
+            </p>
+            <StatArrow
+              direction="up"
+              badge="65% 상승"
+              leftValue="32%"
+              leftLabel="초음파를 보지 않으며 주사할 경우"
+              rightValue="97%"
+              rightLabel="초음파를 확인하면서 주사할 경우"
+            />
+          </div>
+
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
+            <h3 className="mb-8 text-center text-base font-semibold text-slate-900 md:text-lg">
+              기능 개선 척도
+              <br />
+              (Oxford Knee Score)
+            </h3>
+            <StatArrow
+              direction="up"
+              badge="약 61% 개선"
+              leftValue="평균 20.20"
+              leftLabel="치료 전"
+              rightValue="평균 32.92"
+              rightLabel="치료 후"
+            />
+          </div>
+
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
+            <h3 className="mb-8 text-center text-base font-semibold text-slate-900 md:text-lg">
+              통증 완화 척도
+              <br />
+              (Numeric Pain Scale)
+            </h3>
+            <StatArrow
+              direction="down"
+              badge="약 54% 완화"
+              leftValue="평균 8.33"
+              leftLabel="치료 전"
+              rightValue="평균 4.49"
+              rightLabel="치료 후"
+            />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
 export default ClinicCoreImmunity;
-
