@@ -14,7 +14,7 @@ export default function NextNavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const { isAuthenticated, isAdmin, user, logout } = useAuth();
+  const { isAuthenticated, isAdmin, user, logout, isAuthReady } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -30,7 +30,9 @@ export default function NextNavBar() {
   const isActive = (href: string) =>
     router.pathname === href || (href !== "/" && router.pathname.startsWith(href));
 
-  const authLinks = isAuthenticated ? (
+  const authLinks = !isAuthReady ? (
+    <span className="text-slate-400"> </span>
+  ) : isAuthenticated ? (
     <div className="flex flex-col gap-3 md:flex-row md:items-center">
       {isAdmin && (
         <Link href="/admin" className="text-slate-600 transition hover:text-slate-900">

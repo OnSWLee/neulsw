@@ -31,6 +31,10 @@ function getUsers(): StoredUser[] {
   return globalForUsers.__neulswUsers;
 }
 
+export function getUserById(userId: string): StoredUser | undefined {
+  return getUsers().find((user) => user.id === userId);
+}
+
 export async function ensureAdminUser(): Promise<void> {
   const username = process.env.ADMIN_USERNAME || "admin";
   const password = process.env.ADMIN_PASSWORD || "admin123";
