@@ -1,8 +1,31 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { sanityClient, urlFor } from "../../lib/sanityNext";
+
+const portableTextComponents: PortableTextComponents = {
+  types: {
+    image: ({ value }) => {
+      if (!value?.asset) return null;
+      return (
+        <figure className="my-8">
+          <img
+            src={urlFor(value).width(1000).fit("max").auto("format").url()}
+            alt={value.alt || ""}
+            className="mx-auto w-full rounded-lg"
+            loading="lazy"
+          />
+          {value.alt && (
+            <figcaption className="mt-2 text-center text-sm text-slate-500">
+              {value.alt}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
+};
 
 type BlogPost = {
   _id: string;
@@ -94,7 +117,7 @@ export default function BlogDetailPage({ post }: Props) {
 
           {post.content && post.content.length > 0 && (
             <div className="prose prose-lg max-w-none text-slate-700">
-              <PortableText value={post.content} />
+              <PortableText value={post.content} components={portableTextComponents} />
             </div>
           )}
 
