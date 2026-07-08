@@ -1,5 +1,4 @@
 import { FormEvent, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuth } from "../src/contexts/AuthContext";
 
@@ -17,7 +16,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const loggedInUser = await login(username, password);
-      await router.push(loggedInUser?.isAdmin ? "/admin" : "/blog");
+      await router.push(loggedInUser?.isAdmin ? "/admin" : "/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "로그인에 실패했습니다.");
     } finally {
@@ -28,8 +27,8 @@ export default function LoginPage() {
   return (
     <div className="mx-auto flex max-w-md flex-col gap-8 px-6 py-12">
       <div className="text-center">
-        <h1 className="text-2xl font-semibold text-slate-900">로그인</h1>
-        <p className="mt-2 text-sm text-slate-600">치료 후기를 보려면 로그인이 필요합니다.</p>
+        <h1 className="text-2xl font-semibold text-slate-900">관리자 로그인</h1>
+        <p className="mt-2 text-sm text-slate-600">블로그 글 작성을 위한 관리자 전용 페이지입니다.</p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>}
@@ -63,12 +62,6 @@ export default function LoginPage() {
           {isLoading ? "로그인 중..." : "로그인"}
         </button>
       </form>
-      <div className="text-center text-sm text-slate-600">
-        계정이 없으신가요?{" "}
-        <Link href="/register" className="font-semibold text-primary-700 hover:text-primary-800">
-          회원가입
-        </Link>
-      </div>
     </div>
   );
 }

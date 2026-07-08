@@ -30,32 +30,27 @@ export default function NextNavBar() {
   const isActive = (href: string) =>
     router.pathname === href || (href !== "/" && router.pathname.startsWith(href));
 
-  const authLinks = !isAuthReady ? (
-    <span className="text-slate-400"> </span>
-  ) : isAuthenticated ? (
-    <div className="flex flex-col gap-3 md:flex-row md:items-center">
-      {isAdmin && (
-        <Link href="/admin" className="text-slate-600 transition hover:text-slate-900">
-          관리자
-        </Link>
-      )}
-      <span className="text-slate-600">{user?.name}님</span>
-      <button
-        type="button"
-        className="text-left text-slate-600 transition hover:text-slate-900 md:text-center"
-        onClick={() => {
-          logout();
-          router.push("/");
-        }}
-      >
-        로그아웃
-      </button>
-    </div>
-  ) : (
-    <Link href="/login" className="text-slate-600 transition hover:text-slate-900">
-      로그인
-    </Link>
-  );
+  const authLinks =
+    isAuthReady && isAuthenticated ? (
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        {isAdmin && (
+          <Link href="/admin" className="text-slate-600 transition hover:text-slate-900">
+            관리자
+          </Link>
+        )}
+        <span className="text-slate-600">{user?.name}님</span>
+        <button
+          type="button"
+          className="text-left text-slate-600 transition hover:text-slate-900 md:text-center"
+          onClick={() => {
+            logout();
+            router.push("/");
+          }}
+        >
+          로그아웃
+        </button>
+      </div>
+    ) : null;
 
   return (
     <header
