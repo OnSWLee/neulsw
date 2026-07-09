@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { sanityClient, urlFor } from "../../lib/sanityNext";
+import { sanityServerClient, urlFor } from "../../lib/sanityNext";
 
 const portableTextComponents: PortableTextComponents = {
   types: {
@@ -44,7 +44,7 @@ type Props = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await sanityClient.fetch<{ slug: { current: string } }[]>(
+  const slugs = await sanityServerClient.fetch<{ slug: { current: string } }[]>(
     `*[_type == "blogPost" && defined(slug.current)]{ slug }`
   );
 
@@ -56,20 +56,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = String(params?.slug || "");
-  if (!slug) return { notFound: true, revalidate: 300 };
+  if (!slug) return { notFound: true, revalidate: 60 };
 
   const query = `*[_type == "blogPost" && slug.current == $slug][0]{
     _id, title, excerpt, author, publishedAt, _updatedAt, mainImage, slug, content
   }`;
-  const post = await sanityClient.fetch<BlogPost | null>(query, { slug });
+  const post = await sanityServerClient.fetch<BlogPost | null>(query, { slug });
 
   if (!post) {
-    return { notFound: true, revalidate: 300 };
+    return { notFound: true, revalidate: 60 };
   }
 
   return {
     props: { post },
-    revalidate: 300,
+    revalidate: 60,
   };
 };
 

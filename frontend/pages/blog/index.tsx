@@ -1,7 +1,7 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { sanityClient, urlFor } from "../../lib/sanityNext";
+import { sanityServerClient, urlFor } from "../../lib/sanityNext";
 
 type BlogPost = {
   _id: string;
@@ -22,11 +22,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     _id, title, excerpt, author, publishedAt, mainImage, slug
   }`;
 
-  const posts = await sanityClient.fetch<BlogPost[]>(query);
+  const posts = await sanityServerClient.fetch<BlogPost[]>(query);
 
   return {
     props: { posts: posts ?? [] },
-    revalidate: 300,
+    revalidate: 60,
   };
 };
 
