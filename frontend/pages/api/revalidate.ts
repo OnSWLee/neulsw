@@ -2,8 +2,14 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 type SanityWebhookBody = {
   _type?: string;
-  slug?: { current?: string };
+  slug?: { current?: string } | string;
 };
+
+function getSlug(body: SanityWebhookBody): string | null {
+  if (!body.slug) return null;
+  if (typeof body.slug === "string") return body.slug;
+  return body.slug.current ?? null;
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -22,14 +28,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const body = (req.body ?? {}) as SanityWebhookBody;
-    const paths = ["/blog", "/reviews"];
+    const paths = new Set<string>(["/blog", "/reviews"]);
 
-    if (body._type === "blogPost" && body.slug?.current) {
-      paths.push(`/blog/${body.slug.current}`);
+    if (body._type === "blogPost") {
+      const slug = getSlug(body);
+      if (slug) paths.add(`/blog/${slug}`);
     }
 
     const revalidated = await Promise.all(
-      paths.map(async (path) => {
+      [...paths].map(async (path) => {
         await res.revalidate(path);
         return path;
       })
