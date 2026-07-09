@@ -5,7 +5,7 @@ function Home() {
     <div className="min-h-screen bg-cream-white">
       {/* 인사말 및 의사 소개 섹션 */}
       <section id="about-doctor" className="doctor-profile-section mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <div className="space-y-8 md:space-y-12">
+        <div className="stagger-fade-in space-y-8 md:space-y-12">
           <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-200 shadow-card">
             <img
               src="/images/home/profile.jpg"
@@ -87,7 +87,7 @@ function Home() {
 
       {/* 증상 선택 섹션 */}
       <section className="bg-cream-white py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-6 stagger-fade-in">
           <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 md:text-3xl">
             어떻게 치료하나요?
           </h2>

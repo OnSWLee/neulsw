@@ -47,14 +47,14 @@ export default function BlogIndexPage({ posts }: Props) {
       </Head>
       <div className="min-h-screen bg-cream-white">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <h1 className="mb-10 text-4xl font-bold text-slate-900">Blog</h1>
+          <h1 className="mb-10 animate-fade-in text-4xl font-bold text-slate-900">Blog</h1>
 
           {posts.length === 0 ? (
             <div className="rounded-lg bg-slate-50 p-8 text-slate-600">
               작성된 블로그 글이 없습니다.
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="stagger-fade-in grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {posts.map((post) => (
                 <Link
                   key={post._id}

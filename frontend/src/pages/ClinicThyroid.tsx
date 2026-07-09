@@ -2,11 +2,12 @@ function ClinicThyroid() {
   return (
     <div className="min-h-screen bg-cream-white">
       <section className="mx-auto max-w-3xl px-6 py-12 md:py-16">
-        <h1 className="text-center text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
-          생약, 우리 몸의 &apos;회복&apos;을 다시 깨우다
-        </h1>
+        <div className="stagger-fade-in">
+          <h1 className="text-center text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
+            생약, 우리 몸의 &apos;회복&apos;을 다시 깨우다
+          </h1>
 
-        <div className="mt-12 space-y-12 md:mt-16 md:space-y-16">
+          <div className="mt-12 space-y-12 md:mt-16 md:space-y-16">
           <article className="space-y-4">
             <h2 className="text-xl font-bold text-primary-900 md:text-2xl">왜 생약인가요?</h2>
             <p className="text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
@@ -57,6 +58,7 @@ function ClinicThyroid() {
             alt="생약 치료"
             className="w-full object-cover"
           />
+        </div>
         </div>
       </section>
     </div>

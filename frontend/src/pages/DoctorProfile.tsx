@@ -215,7 +215,7 @@ function DoctorProfile() {
   return (
     <div className="min-h-screen bg-cream-white">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <div className="space-y-16 md:space-y-20">
+        <div className="space-y-16 stagger-fade-in md:space-y-20">
           {sections.map((section, index) => (
             <AboutSectionBlock key={section.title} section={section} index={index} />
           ))}

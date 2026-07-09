@@ -69,7 +69,7 @@ function StatArrow({
 
 function ClinicCoreImmunity() {
   return (
-    <div className="min-h-screen bg-cream-white">
+    <div className="min-h-screen bg-cream-white stagger-fade-in">
       <section className="mx-auto max-w-6xl px-6 py-12 text-center md:py-16">
         <h1 className="text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
           원인을 치료하는 초음파 유도 약침시술

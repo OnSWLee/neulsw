@@ -33,6 +33,15 @@ const config: Config = {
       },
       boxShadow: {
         card: "0 10px 30px rgba(26,60,52,0.08)"
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" }
+        }
+      },
+      animation: {
+        "fade-in": "fadeIn 1s ease-out both"
       }
     }
   },

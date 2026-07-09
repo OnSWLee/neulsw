@@ -13,7 +13,7 @@ const clinicData = [
 
 function Clinics() {
   return (
-    <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
+    <div className="mx-auto flex max-w-6xl animate-fade-in flex-col gap-8 px-6 py-10">
       <SectionCard
         title="전문 클리닉 한눈에 보기"
       >

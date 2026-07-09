@@ -93,7 +93,7 @@ export default function BlogDetailPage({ post }: Props) {
         <meta name="description" content={post.excerpt || post.title} />
       </Head>
       <div className="min-h-screen bg-cream-white">
-        <article className="mx-auto max-w-4xl px-6 py-10">
+        <article className="mx-auto max-w-4xl stagger-fade-in px-6 py-10">
           <header className="mb-8">
             <h1 className="mb-4 text-4xl font-bold text-primary-900">{post.title}</h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
