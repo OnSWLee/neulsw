@@ -16,3 +16,4 @@ coverage
 
 .vercel
 .env*
+frontend/.env.local
