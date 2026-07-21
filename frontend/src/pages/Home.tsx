@@ -95,7 +95,7 @@ function Home() {
             {[
               {
                 to: "/clinics/thyroid",
-                title: "생약 호르몬 클리닉"
+                title: "생약 클리닉"
               },
               {
                 to: "/clinics/immunity",
