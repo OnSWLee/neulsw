@@ -76,28 +76,30 @@ function ClinicCoreImmunity() {
         </h1>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-        <div className="mx-auto max-w-3xl">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 md:grid-cols-2 md:gap-12 md:pb-16">
+        <div>
           <h2 className="text-xl font-bold text-primary-900 md:text-2xl">01 초음파 기기</h2>
           <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
-            고해상도 초음파 기기를 활용하여 통증의 원인을 정확하게 진단한 이후 삽입되는 침을 실시간으로
-            확인하면서 치료를 진행합니다.
+            표층에 위치한 힘줄이나 인대는 촉진으로도 위치를 확인하고 치료할 수 있지만 심부에 위치한
+            조직이나 혈관과 신경이 많이 분포한 조직은 보고 치료해야 합니다. 고해상도 초음파 기기를 활용하여
+            통증의 원인을 정확하게 진단한 이후 삽입되는 침을 실시간으로 확인하면서 치료를 진행합니다.
           </p>
-          <div className="mt-8">
-            <PhotoPlaceholder label="초음파 기기 사진" />
-          </div>
+        </div>
+        <div>
+          <PhotoPlaceholder label="초음파 기기 사진" />
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 md:grid-cols-2 md:gap-12 md:pb-16">
-        <div className="md:order-1">
+        <div>
           <h2 className="text-xl font-bold text-primary-900 md:text-2xl">02 도담약침</h2>
           <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
-            도담약침은 생약에서 멸균 및 증류 추출한 성분을 활용해 신경 압박을 완화하고 조직을
-            재생시키며 통증을 완화하는 효능이 있습니다.
+            척추 및 관절 치료를 위해 생약에서 멸균 및 증류 추출한 약침 성분을 활용해 신경 압박을 완화하고
+            조직을 재생시키며 통증을 완화합니다. 스테로이드 성분이 들어가지 않기 때문에 부작용 걱정 없이
+            치료 받을 수 있습니다.
           </p>
         </div>
-        <div className="md:order-2">
+        <div>
           <PhotoPlaceholder label="도담약침 사진" />
         </div>
       </section>

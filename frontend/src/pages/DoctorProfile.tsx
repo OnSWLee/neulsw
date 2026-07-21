@@ -89,11 +89,11 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
   return (
     <div className="mx-auto w-full max-w-xl">
       <div className="relative">
-        <div className="aspect-square overflow-hidden rounded-lg bg-slate-200">
+        <div className="flex min-h-[280px] items-center justify-center overflow-hidden rounded-lg bg-slate-100 md:min-h-[360px]">
           <img
             src={resolveImageSrc(images[index], fallbackAttempt[index] ?? 0)}
             alt={`${altPrefix} 사진 ${index + 1}`}
-            className="h-full w-full object-cover"
+            className="max-h-[28rem] w-full object-contain md:max-h-[32rem]"
             onError={() => {
               setFallbackAttempt((prev) => {
                 const nextAttempt = (prev[index] ?? 0) + 1;
