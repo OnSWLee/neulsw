@@ -24,9 +24,9 @@ const sections: AboutSection[] = [
       "경희대학교 한의과대학 졸업 후 경희대학교 한방병원에서 수련을 마치고 전문의 자격증을 취득하였습니다. 의학적 기초 지식을 쌓고 병원에서 다양한 환자를 접하며 임상의로서 기초 소양을 다지는 시기였습니다. 특히 내분비 센터에서 호르몬 질환 환자들을 깊게 공부했습니다.",
     ],
     images: [
-      "/images/doctor/section1-1.jpg",
-      "/images/doctor/section1-2.jpg",
-      "/images/doctor/section1-3.jpg",
+      "/images/doctor/06-16/IMG_2861.jpg",
+      "/images/doctor/06-16/IMG_2862.jpg",
+      "/images/doctor/06-16/IMG_2864.jpg",
     ],
   },
   {
@@ -43,9 +43,10 @@ const sections: AboutSection[] = [
       "임상 한의학과 대학원에 진학하여 연구 데이터와 논문을 바탕으로 깊이있는 공부를 하고 박사학위를 취득하였습니다. 군의관으로 복무하는 중 대한한의학회, 대한한방내과학회, 대한침도학회 등 다양한 학회 활동을 하였으며 미국 '근골격계 초음파 인증 자격(RMSK)'를 취득하였습니다.",
     ],
     images: [
-      "/images/doctor/section2-1.jpg",
-      "/images/doctor/section2-2.jpg",
-      "/images/doctor/section2-3.jpg",
+      "/images/doctor/14-20/IMG_2774.jpg",
+      "/images/doctor/14-20/IMG_2777.jpg",
+      "/images/doctor/14-20/IMG_2859.jpg",
+      "/images/doctor/14-20/IMG_2860.jpg",
     ],
   },
   {
@@ -62,9 +63,11 @@ const sections: AboutSection[] = [
       "이숲한의원에서 로컬 환자 진료 경험을 쌓은 후 경희늘품한의원을 개원하여 수년간 성실히 진료중입니다. 또 임상 한의학 박사로서 전문성을 인정 받아 경희대학교 외래임상실습 책임교수로 위임되었습니다. 지금도 더 나은 진료를 위해 매일 연구하며 노력하고 있습니다.",
     ],
     images: [
-      "/images/doctor/section3-1.jpg",
-      "/images/doctor/section3-2.jpg",
-      "/images/doctor/section3-3.jpg",
+      "/images/doctor/20-%ED%98%84%EC%9E%AC/IMG_1416.jpeg",
+      "/images/doctor/20-%ED%98%84%EC%9E%AC/IMG_1417.jpeg",
+      "/images/doctor/20-%ED%98%84%EC%9E%AC/IMG_1418.jpeg",
+      "/images/doctor/20-%ED%98%84%EC%9E%AC/IMG_2773.jpg",
+      "/images/doctor/20-%ED%98%84%EC%9E%AC/IMG_2775.jpg",
     ],
   },
 ];
