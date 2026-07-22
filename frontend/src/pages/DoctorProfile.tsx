@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type AboutSection = {
@@ -82,67 +82,113 @@ function resolveImageSrc(src: string, attempt = 0) {
   return src;
 }
 
-function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPrefix: string }) {
-  const [index, setIndex] = useState(0);
-  const [fallbackAttempt, setFallbackAttempt] = useState<Record<number, number>>({});
+function useVisibleSlideCount() {
+  const [count, setCount] = useState(1);
 
-  const goPrev = () => setIndex((current) => (current - 1 + images.length) % images.length);
-  const goNext = () => setIndex((current) => (current + 1) % images.length);
+  useEffect(() => {
+    const update = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) setCount(3);
+      else if (window.matchMedia("(min-width: 640px)").matches) setCount(2);
+      else setCount(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return count;
+}
+
+function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPrefix: string }) {
+  const visibleCount = useVisibleSlideCount();
+  const [start, setStart] = useState(0);
+  const [fallbackAttempt, setFallbackAttempt] = useState<Record<number, number>>({});
+  const maxStart = Math.max(0, images.length - visibleCount);
+  const canNavigate = images.length > visibleCount;
+
+  useEffect(() => {
+    setStart((current) => Math.min(current, maxStart));
+  }, [maxStart]);
+
+  const goPrev = () => setStart((current) => (current <= 0 ? maxStart : current - 1));
+  const goNext = () => setStart((current) => (current >= maxStart ? 0 : current + 1));
+
+  const visibleImages = images.slice(start, start + visibleCount);
 
   return (
-    <div className="mx-auto w-full max-w-[29rem]">
-      <div className="relative">
-        <div className="flex aspect-square w-full items-center justify-center rounded-lg bg-slate-100 p-3 md:p-4">
-          <img
-            src={resolveImageSrc(images[index], fallbackAttempt[index] ?? 0)}
-            alt={`${altPrefix} 사진 ${index + 1}`}
-            className="max-h-full max-w-full object-contain"
-            onError={() => {
-              setFallbackAttempt((prev) => {
-                const nextAttempt = (prev[index] ?? 0) + 1;
-                if (nextAttempt > 2) return prev;
-                return { ...prev, [index]: nextAttempt };
-              });
-            }}
-          />
-        </div>
-        <button
-          type="button"
-          onClick={goPrev}
-          aria-label="이전 사진"
-          className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-md transition hover:bg-white"
-        >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          onClick={goNext}
-          aria-label="다음 사진"
-          className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-md transition hover:bg-white"
-        >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+    <div className="relative mx-auto w-full max-w-5xl px-8 md:px-12">
+      <div
+        className={clsx(
+          "grid gap-4 md:gap-5",
+          visibleCount === 1 && "grid-cols-1",
+          visibleCount === 2 && "grid-cols-2",
+          visibleCount === 3 && "grid-cols-3"
+        )}
+      >
+        {visibleImages.map((src, offset) => {
+          const imageIndex = start + offset;
+          return (
+            <div key={`${src}-${imageIndex}`} className="min-w-0">
+              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg bg-slate-100 p-2 shadow-card">
+                <img
+                  src={resolveImageSrc(src, fallbackAttempt[imageIndex] ?? 0)}
+                  alt={`${altPrefix} 사진 ${imageIndex + 1}`}
+                  className="max-h-full max-w-full object-contain"
+                  onError={() => {
+                    setFallbackAttempt((prev) => {
+                      const nextAttempt = (prev[imageIndex] ?? 0) + 1;
+                      if (nextAttempt > 2) return prev;
+                      return { ...prev, [imageIndex]: nextAttempt };
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="mt-4 flex items-center justify-center gap-2">
-        {images.map((_, dotIndex) => (
+
+      {canNavigate ? (
+        <>
           <button
-            key={dotIndex}
             type="button"
-            aria-label={`${dotIndex + 1}번째 사진 보기`}
-            onClick={() => setIndex(dotIndex)}
+            onClick={goPrev}
+            aria-label="이전 사진"
+            className="absolute left-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 text-white shadow-md transition hover:bg-primary-600"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="다음 사진"
+            className="absolute right-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 text-white shadow-md transition hover:bg-primary-600"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </>
+      ) : null}
+
+      <div className="mt-4 flex items-center justify-center gap-2">
+        {Array.from({ length: maxStart + 1 }, (_, pageIndex) => (
+          <button
+            key={pageIndex}
+            type="button"
+            aria-label={`${pageIndex + 1}번째 사진 묶음 보기`}
+            onClick={() => setStart(pageIndex)}
             className={clsx(
               "h-2.5 rounded-full transition",
-              dotIndex === index ? "w-6 bg-primary-700" : "w-2.5 bg-slate-300 hover:bg-slate-400"
+              pageIndex === start ? "w-6 bg-primary-700" : "w-2.5 bg-slate-300 hover:bg-slate-400"
             )}
           />
         ))}
       </div>
       <p className="mt-2 text-center text-sm text-slate-500">
-        {index + 1} / {images.length}
+        {start + 1}–{Math.min(start + visibleCount, images.length)} / {images.length}
       </p>
     </div>
   );

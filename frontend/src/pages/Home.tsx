@@ -6,11 +6,11 @@ function Home() {
       {/* 인사말 및 의사 소개 섹션 */}
       <section id="about-doctor" className="doctor-profile-section mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="stagger-fade-in space-y-8 md:space-y-12">
-          <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-slate-200 shadow-card">
+          <div className="mx-auto w-full max-w-sm rounded-2xl bg-slate-100 shadow-card">
             <img
               src="/images/home/profile.jpg"
               alt="이승욱 대표원장"
-              className="aspect-[4/5] w-full object-cover"
+              className="h-auto w-full rounded-2xl object-contain"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 if (target.src.includes(".jpg")) {
