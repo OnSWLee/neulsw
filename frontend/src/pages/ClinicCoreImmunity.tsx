@@ -9,6 +9,14 @@ function PhotoPlaceholder({ label }: { label: string }) {
   );
 }
 
+function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-slate-100 bg-slate-100 shadow-card">
+      <img src={src} alt={alt} className="aspect-[4/3] w-full object-contain" />
+    </div>
+  );
+}
+
 function StatArrow({
   direction,
   badge,
@@ -86,7 +94,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <PhotoPlaceholder label="초음파 기기 사진" />
+          <ClinicPhoto src="/images/doctor/sono.png" alt="초음파 기기" />
         </div>
       </section>
 
