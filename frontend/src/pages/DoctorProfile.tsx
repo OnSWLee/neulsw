@@ -90,13 +90,13 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
   const goNext = () => setIndex((current) => (current + 1) % images.length);
 
   return (
-    <div className="mx-auto w-full max-w-2xl">
+    <div className="mx-auto w-full max-w-[29rem]">
       <div className="relative">
-        <div className="flex items-center justify-center rounded-lg bg-slate-100 px-2 py-4 md:px-4 md:py-6">
+        <div className="flex aspect-square w-full items-center justify-center rounded-lg bg-slate-100 p-3 md:p-4">
           <img
             src={resolveImageSrc(images[index], fallbackAttempt[index] ?? 0)}
             alt={`${altPrefix} 사진 ${index + 1}`}
-            className="h-auto max-h-[min(70vh,40rem)] w-auto max-w-full object-contain"
+            className="max-h-full max-w-full object-contain"
             onError={() => {
               setFallbackAttempt((prev) => {
                 const nextAttempt = (prev[index] ?? 0) + 1;
