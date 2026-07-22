@@ -11,8 +11,8 @@ function PhotoPlaceholder({ label }: { label: string }) {
 
 function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-100 bg-slate-100 shadow-card">
-      <img src={src} alt={alt} className="aspect-[4/3] w-full object-contain" />
+    <div className="flex items-center justify-center rounded-lg border border-slate-100 bg-slate-100 p-3 shadow-card md:p-4">
+      <img src={src} alt={alt} className="h-auto max-h-[min(60vh,32rem)] w-auto max-w-full object-contain" />
     </div>
   );
 }
