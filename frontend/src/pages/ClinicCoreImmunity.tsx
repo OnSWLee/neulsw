@@ -1,14 +1,3 @@
-function PhotoPlaceholder({ label }: { label: string }) {
-  return (
-    <div
-      className="flex aspect-[4/3] w-full items-center justify-center rounded-lg border border-slate-100 bg-slate-200 shadow-card"
-      aria-label={label}
-    >
-      <span className="text-sm text-slate-500">사진 준비 중</span>
-    </div>
-  );
-}
-
 function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex items-center justify-center rounded-lg border border-slate-100 bg-slate-100 p-3 shadow-card md:p-4">
@@ -94,7 +83,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <ClinicPhoto src="/images/doctor/sono.png" alt="초음파 기기" />
+          <ClinicPhoto src="/images/clinics/SONO01.jpg" alt="초음파 기기" />
         </div>
       </section>
 
@@ -108,7 +97,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <PhotoPlaceholder label="도담약침 사진" />
+          <ClinicPhoto src="/images/clinics/SONO02.png" alt="도담약침" />
         </div>
       </section>
 
