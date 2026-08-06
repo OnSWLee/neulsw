@@ -6,64 +6,6 @@ function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function StatArrow({
-  direction,
-  badge,
-  leftValue,
-  leftLabel,
-  rightValue,
-  rightLabel,
-}: {
-  direction: "up" | "down";
-  badge: string;
-  leftValue: string;
-  leftLabel: string;
-  rightValue: string;
-  rightLabel: string;
-}) {
-  const path =
-    direction === "up"
-      ? "M 28 98 Q 120 18 212 38"
-      : "M 28 38 Q 120 102 212 82";
-  const arrowHead =
-    direction === "up" ? "212,38 204,50 220,46" : "212,82 204,70 220,74";
-
-  return (
-    <div className="flex flex-col items-center text-center">
-      <div className="relative mx-auto mb-8 h-40 w-full max-w-[300px] overflow-visible md:h-44 md:max-w-[340px]">
-        <svg
-          viewBox="0 0 240 120"
-          className="h-full w-full overflow-visible"
-          aria-hidden="true"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path
-            d={path}
-            fill="none"
-            stroke="#1A3C34"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          <polygon points={arrowHead} fill="#1A3C34" />
-        </svg>
-        <span className="absolute left-1/2 top-1/2 flex h-[4.5rem] w-[4.5rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 px-2 text-xs font-bold leading-tight text-white md:h-20 md:w-20 md:text-sm">
-          {badge}
-        </span>
-      </div>
-      <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
-        <div>
-          <p className="text-2xl font-bold text-slate-900 md:text-3xl">{leftValue}</p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">{leftLabel}</p>
-        </div>
-        <div>
-          <p className="text-2xl font-bold text-slate-900 md:text-3xl">{rightValue}</p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">{rightLabel}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ClinicCoreImmunity() {
   return (
     <div className="min-h-screen bg-cream-white stagger-fade-in">
@@ -102,53 +44,12 @@ function ClinicCoreImmunity() {
       </section>
 
       <section className="border-t border-slate-100 bg-cream-white px-6 py-12 md:py-16">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3 md:gap-8">
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
-            <h3 className="mb-2 text-center text-base font-semibold text-slate-900 md:text-lg">시술정확도비교</h3>
-            <p className="mb-6 text-center text-[10px] leading-relaxed text-slate-500 md:text-xs">
-              *출처: 대한내과학회지 제89권 제6호 통권제684호(2015)
-            </p>
-            <StatArrow
-              direction="up"
-              badge="65% 상승"
-              leftValue="32%"
-              leftLabel="초음파를 보지 않으며 주사할 경우"
-              rightValue="97%"
-              rightLabel="초음파를 확인하면서 주사할 경우"
-            />
-          </div>
-
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
-            <h3 className="mb-8 text-center text-base font-semibold text-slate-900 md:text-lg">
-              기능 개선 척도
-              <br />
-              (Oxford Knee Score)
-            </h3>
-            <StatArrow
-              direction="up"
-              badge="약 61% 개선"
-              leftValue="평균 20.20"
-              leftLabel="치료 전"
-              rightValue="평균 32.92"
-              rightLabel="치료 후"
-            />
-          </div>
-
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
-            <h3 className="mb-8 text-center text-base font-semibold text-slate-900 md:text-lg">
-              통증 완화 척도
-              <br />
-              (Numeric Pain Scale)
-            </h3>
-            <StatArrow
-              direction="down"
-              badge="약 54% 완화"
-              leftValue="평균 8.33"
-              leftLabel="치료 전"
-              rightValue="평균 4.49"
-              rightLabel="치료 후"
-            />
-          </div>
+        <div className="mx-auto max-w-6xl">
+          <img
+            src="/images/clinics/SONO03.png"
+            alt="시술 효과 그래프"
+            className="mx-auto h-auto w-full max-w-5xl object-contain"
+          />
         </div>
       </section>
     </div>
