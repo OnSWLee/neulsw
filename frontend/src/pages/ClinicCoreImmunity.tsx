@@ -44,11 +44,14 @@ function ClinicCoreImmunity() {
       </section>
 
       <section className="border-t border-slate-100 bg-cream-white px-6 py-12 md:py-16">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
+            초음파 유도 약침시술의 장점
+          </h2>
           <img
             src="/images/clinics/SONO03.png"
-            alt="시술 효과 그래프"
-            className="mx-auto h-auto w-full max-w-5xl object-contain"
+            alt="초음파 유도 약침시술의 장점 그래프"
+            className="mx-auto mt-8 h-auto w-full max-w-5xl object-contain md:mt-10"
           />
         </div>
       </section>
