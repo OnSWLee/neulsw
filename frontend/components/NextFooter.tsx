@@ -11,6 +11,7 @@ export default function NextFooter() {
           <div className="mt-1">Tel: 031-224-1191</div>
           <div className="mt-2">평일 09:00–20:00 (점심 13:00–14:00)</div>
           <div>토요일 09:00–14:00</div>
+          <div>일요일·공휴일 휴진</div>
         </div>
       </div>
     </footer>

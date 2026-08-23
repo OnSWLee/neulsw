@@ -11,7 +11,7 @@ export const HOME_FAQS: FaqItem[] = [
   {
     question: "진료시간은 어떻게 되나요?",
     answer:
-      "평일은 오전 9시부터 저녁 8시까지 진료하며, 점심시간은 오후 1시부터 2시입니다. 토요일은 오전 9시부터 오후 2시까지 점심시간 없이 진료합니다.",
+      "평일은 오전 9시부터 저녁 8시까지 진료하며, 점심시간은 오후 1시부터 2시입니다. 토요일은 오전 9시부터 오후 2시까지 점심시간 없이 진료합니다. 일요일과 공휴일은 휴진입니다.",
   },
   {
     question: "경희늘품한의원 대표원장은 누구인가요?",
@@ -93,6 +93,7 @@ export function medicalClinicJsonLd() {
       addressCountry: SITE.address.addressCountry,
     },
     openingHoursSpecification: openingHoursJsonLd(),
+    openingHours: ["Mo-Fr 09:00-13:00,14:00-20:00", "Sa 09:00-14:00", "Su closed", "PH closed"],
     medicalSpecialty: ["Acupuncture", "TraditionalChineseMedicine"],
     availableService: SITE.clinics.map((c) => ({
       "@type": "MedicalTherapy",
