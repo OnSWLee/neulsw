@@ -1,6 +1,6 @@
 import type { GetStaticProps } from "next";
-import Head from "next/head";
 import Link from "next/link";
+import SeoHead from "../components/SeoHead";
 import { sanityClient, urlFor } from "../lib/sanityNext";
 
 type Review = {
@@ -36,9 +36,11 @@ function formatDate(dateString: string) {
 export default function ReviewsPage({ reviews }: Props) {
   return (
     <>
-      <Head>
-        <title>후기 | 경희늘품한의원</title>
-      </Head>
+      <SeoHead
+        title="후기"
+        description="경희늘품한의원 환자 후기 — 생약·척추관절 치료 경험을 공유합니다."
+        path="/reviews"
+      />
       <div className="min-h-screen bg-cream-white">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <h1 className="mb-12 text-4xl font-bold text-slate-900">Story</h1>

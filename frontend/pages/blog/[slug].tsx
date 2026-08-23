@@ -1,8 +1,9 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
+import SeoHead from "../../components/SeoHead";
 import { sanityServerClient, urlFor } from "../../lib/sanityNext";
+import { SITE } from "../../src/lib/site";
 
 const portableTextComponents: PortableTextComponents = {
   types: {
@@ -85,13 +86,36 @@ export default function BlogDetailPage({ post }: Props) {
   if (!post) return null;
 
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).url() : null;
+  const description = post.excerpt || `${post.title} — ${SITE.name} 블로그`;
 
   return (
     <>
-      <Head>
-        <title>{post.title} | 경희늘품한의원</title>
-        <meta name="description" content={post.excerpt || post.title} />
-      </Head>
+      <SeoHead
+        title={post.title}
+        description={description}
+        path={`/blog/${post.slug.current}`}
+        image={imageUrl || SITE.defaultOgImage}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description,
+          datePublished: post.publishedAt,
+          dateModified: post._updatedAt || post.publishedAt,
+          author: {
+            "@type": "Person",
+            name: post.author || SITE.doctor.name,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: SITE.name,
+            url: SITE.url,
+          },
+          mainEntityOfPage: `${SITE.url}/blog/${post.slug.current}`,
+          image: imageUrl || undefined,
+        }}
+      />
       <div className="min-h-screen bg-cream-white">
         <article className="mx-auto max-w-4xl stagger-fade-in px-6 py-10">
           <header className="mb-8">

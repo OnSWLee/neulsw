@@ -1,6 +1,6 @@
 import type { GetStaticProps } from "next";
-import Head from "next/head";
 import Link from "next/link";
+import SeoHead from "../../components/SeoHead";
 import { sanityServerClient, urlFor } from "../../lib/sanityNext";
 
 type BlogPost = {
@@ -41,10 +41,11 @@ function formatDate(dateString: string) {
 export default function BlogIndexPage({ posts }: Props) {
   return (
     <>
-      <Head>
-        <title>블로그 | 경희늘품한의원</title>
-        <meta name="description" content="경희늘품한의원 블로그 글 목록" />
-      </Head>
+      <SeoHead
+        title="블로그"
+        description="경희늘품한의원 블로그 — 생약·면역·척추관절 임상과 건강 정보를 공유합니다."
+        path="/blog"
+      />
       <div className="min-h-screen bg-cream-white">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <h1 className="mb-10 animate-fade-in text-4xl font-bold text-slate-900">Blog</h1>

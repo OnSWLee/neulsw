@@ -1,3 +1,6 @@
+import FaqSection from "../../components/FaqSection";
+import { SPINE_FAQS } from "../lib/seo";
+
 function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex items-center justify-center rounded-lg border border-slate-100 bg-slate-100 p-3 shadow-card md:p-4">
@@ -25,7 +28,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <ClinicPhoto src="/images/clinics/SONO01.jpg" alt="초음파 기기" />
+          <ClinicPhoto src="/images/clinics/SONO01.jpg" alt="경희늘품한의원 초음파 기기" />
         </div>
       </section>
 
@@ -39,7 +42,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <ClinicPhoto src="/images/clinics/SONO02.png" alt="도담약침" />
+          <ClinicPhoto src="/images/clinics/SONO02.png" alt="경희늘품한의원 도담약침" />
         </div>
       </section>
 
@@ -55,6 +58,8 @@ function ClinicCoreImmunity() {
           />
         </div>
       </section>
+
+      <FaqSection title="척추관절 클리닉 FAQ" items={SPINE_FAQS} />
     </div>
   );
 }

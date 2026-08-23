@@ -10,7 +10,7 @@ const client = createClient({
 })
 
 // 기본 URL (환경 변수에서 가져오거나 기본값 사용)
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.neulsw.com'
 
 // 블로그 포스트 타입
 interface BlogPost {
@@ -76,6 +76,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.7,
+      },
+      {
+        url: `${baseUrl}/reviews`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
       },
     ]
 

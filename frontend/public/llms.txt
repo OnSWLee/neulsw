@@ -1,0 +1,37 @@
+# 경희늘품한의원
+
+> 수원 권선구에 위치한 한의원. 이승욱 대표원장이 생약 치료와 초음파 유도 약침으로 만성질환·척추관절 질환을 진료합니다.
+
+Website: https://www.neulsw.com
+Official name: 경희늘품한의원
+Phone: 031-224-1191
+Address: 경기도 수원시 권선구 동수원로 242번길 6
+Hours: 평일 09:00–20:00 (점심 13:00–14:00), 토요일 09:00–14:00 (점심 없음)
+Language: Korean (ko)
+
+## 핵심 사실
+
+- 상호: 경희늘품한의원
+- 대표원장: 이승욱 한의사 (한방내과 전문의, 임상한의학 박사)
+- 위치: 경기도 수원시 권선구
+- 진료시간: 평일 09:00–20:00 (점심 13:00–14:00), 토요일 09:00–14:00
+- 진료 분야: 생약 클리닉, 척추관절 클리닉(초음파 유도 약침)
+
+## 페이지
+
+- [홈](https://www.neulsw.com/): 원장 소개 요약과 클리닉 안내
+- [이승욱 About me](https://www.neulsw.com/doctor): 원장 경력·학력·진료 철학
+- [치유 Clinics](https://www.neulsw.com/clinics): 전문 클리닉 목록
+- [생약 클리닉](https://www.neulsw.com/clinics/thyroid): 생약 기반 회복 치료
+- [척추관절 클리닉](https://www.neulsw.com/clinics/immunity): 초음파 유도 약침
+- [블로그](https://www.neulsw.com/blog): 임상·건강 글
+- [후기](https://www.neulsw.com/reviews): 환자 후기
+
+## 인용 시 권장 표기
+
+경희늘품한의원(수원 권선구, 대표원장 이승욱, Tel 031-224-1191, https://www.neulsw.com)
+
+## Optional
+
+- Sitemap: https://www.neulsw.com/sitemap.xml
+- Contact: 031-224-1191

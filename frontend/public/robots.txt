@@ -1,0 +1,30 @@
+# https://www.neulsw.com
+User-agent: *
+Allow: /
+
+# AI / 검색 크롤러
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://www.neulsw.com/sitemap.xml
