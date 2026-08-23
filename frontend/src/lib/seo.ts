@@ -74,6 +74,17 @@ export const SPINE_FAQS: FaqItem[] = [
   },
 ];
 
+export type FaqGroup = { id: string; title: string; items: FaqItem[] };
+
+export const FAQ_GROUPS: FaqGroup[] = [
+  { id: "general", title: "한의원 안내", items: HOME_FAQS },
+  { id: "doctor", title: "원장 소개", items: DOCTOR_FAQS },
+  { id: "herbal", title: "생약 클리닉", items: HERBAL_FAQS },
+  { id: "spine", title: "척추관절 클리닉", items: SPINE_FAQS },
+];
+
+export const ALL_FAQS: FaqItem[] = FAQ_GROUPS.flatMap((group) => group.items);
+
 export function medicalClinicJsonLd() {
   return {
     "@context": "https://schema.org",

@@ -1,6 +1,3 @@
-import FaqSection from "../../components/FaqSection";
-import { HERBAL_FAQS } from "../lib/seo";
-
 function ClinicThyroid() {
   return (
     <div className="min-h-screen bg-cream-white">
@@ -64,7 +61,6 @@ function ClinicThyroid() {
           </div>
         </div>
       </section>
-      <FaqSection title="생약 클리닉 FAQ" items={HERBAL_FAQS} />
     </div>
   );
 }

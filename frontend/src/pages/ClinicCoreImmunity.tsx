@@ -1,6 +1,3 @@
-import FaqSection from "../../components/FaqSection";
-import { SPINE_FAQS } from "../lib/seo";
-
 function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex items-center justify-center rounded-lg border border-slate-100 bg-slate-100 p-3 shadow-card md:p-4">
@@ -58,8 +55,6 @@ function ClinicCoreImmunity() {
           />
         </div>
       </section>
-
-      <FaqSection title="척추관절 클리닉 FAQ" items={SPINE_FAQS} />
     </div>
   );
 }

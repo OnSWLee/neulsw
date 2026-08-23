@@ -1,9 +1,7 @@
 import DoctorProfile from "../src/pages/DoctorProfile";
 import SeoHead from "../components/SeoHead";
 import {
-  DOCTOR_FAQS,
   breadcrumbJsonLd,
-  faqPageJsonLd,
   physicianJsonLd,
 } from "../src/lib/seo";
 import { SITE } from "../src/lib/site";
@@ -17,7 +15,6 @@ export default function DoctorPage() {
         path="/doctor"
         jsonLd={[
           physicianJsonLd(),
-          faqPageJsonLd(DOCTOR_FAQS),
           breadcrumbJsonLd([
             { name: "홈", path: "/" },
             { name: "이승욱 About me", path: "/doctor" },

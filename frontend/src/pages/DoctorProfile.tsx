@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import FaqSection from "../../components/FaqSection";
-import { DOCTOR_FAQS } from "../lib/seo";
 
 type AboutSection = {
   imageAlt: string;
@@ -275,7 +273,6 @@ function DoctorProfile() {
           ))}
         </div>
       </div>
-      <FaqSection title="원장 관련 자주 묻는 질문" items={DOCTOR_FAQS} />
     </div>
   );
 }

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import FaqSection from "../../components/FaqSection";
-import { HOME_FAQS } from "../lib/seo";
 
 function Home() {
   return (
@@ -120,8 +118,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <FaqSection items={HOME_FAQS} />
     </div>
   );
 }

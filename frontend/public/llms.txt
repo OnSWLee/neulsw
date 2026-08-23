@@ -24,6 +24,7 @@ Language: Korean (ko)
 - [치유 Clinics](https://www.neulsw.com/clinics): 전문 클리닉 목록
 - [생약 클리닉](https://www.neulsw.com/clinics/thyroid): 생약 기반 회복 치료
 - [척추관절 클리닉](https://www.neulsw.com/clinics/immunity): 초음파 유도 약침
+- [FAQ](https://www.neulsw.com/faq): 자주 묻는 질문
 - [블로그](https://www.neulsw.com/blog): 임상·건강 글
 - [후기](https://www.neulsw.com/reviews): 환자 후기
 

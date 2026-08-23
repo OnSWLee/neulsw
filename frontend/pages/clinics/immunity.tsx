@@ -1,9 +1,7 @@
 import ClinicCoreImmunity from "../../src/pages/ClinicCoreImmunity";
 import SeoHead from "../../components/SeoHead";
 import {
-  SPINE_FAQS,
   breadcrumbJsonLd,
-  faqPageJsonLd,
 } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
@@ -16,7 +14,6 @@ export default function ClinicImmunityPage() {
         description={clinic.description}
         path={clinic.path}
         jsonLd={[
-          faqPageJsonLd(SPINE_FAQS),
           breadcrumbJsonLd([
             { name: "홈", path: "/" },
             { name: "치유 Clinics", path: "/clinics" },

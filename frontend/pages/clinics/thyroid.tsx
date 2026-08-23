@@ -1,9 +1,7 @@
 import ClinicThyroid from "../../src/pages/ClinicThyroid";
 import SeoHead from "../../components/SeoHead";
 import {
-  HERBAL_FAQS,
   breadcrumbJsonLd,
-  faqPageJsonLd,
 } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
@@ -16,7 +14,6 @@ export default function ClinicThyroidPage() {
         description={clinic.description}
         path={clinic.path}
         jsonLd={[
-          faqPageJsonLd(HERBAL_FAQS),
           breadcrumbJsonLd([
             { name: "홈", path: "/" },
             { name: "치유 Clinics", path: "/clinics" },

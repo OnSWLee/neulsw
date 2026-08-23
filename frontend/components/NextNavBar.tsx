@@ -8,6 +8,7 @@ const links = [
   { href: "/doctor", label: "이승욱 About me" },
   { href: "/blog", label: "블로그 Blog" },
   { href: "/clinics", label: "치유 Clinics" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export default function NextNavBar() {
