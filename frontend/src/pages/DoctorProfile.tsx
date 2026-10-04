@@ -129,7 +129,7 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
           const imageIndex = start + offset;
           return (
             <div key={`${src}-${imageIndex}`} className="min-w-0">
-              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg bg-slate-100 p-2 shadow-card">
+              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-100 p-2">
                 <img
                   src={resolveImageSrc(src, fallbackAttempt[imageIndex] ?? 0)}
                   alt={`${altPrefix} 사진 ${imageIndex + 1}`}
@@ -154,7 +154,7 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
             type="button"
             onClick={goPrev}
             aria-label="이전 사진"
-            className="absolute left-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 text-white shadow-md transition hover:bg-primary-600"
+            className="absolute left-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-slate-900 bg-white text-slate-900 transition hover:bg-slate-900 hover:text-white"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -164,7 +164,7 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
             type="button"
             onClick={goNext}
             aria-label="다음 사진"
-            className="absolute right-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-primary-700 text-white shadow-md transition hover:bg-primary-600"
+            className="absolute right-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-slate-900 bg-white text-slate-900 transition hover:bg-slate-900 hover:text-white"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -182,12 +182,12 @@ function SectionImageCarousel({ images, altPrefix }: { images: string[]; altPref
             onClick={() => setStart(pageIndex)}
             className={clsx(
               "h-2.5 rounded-full transition",
-              pageIndex === start ? "w-6 bg-primary-700" : "w-2.5 bg-slate-300 hover:bg-slate-400"
+              pageIndex === start ? "w-6 bg-slate-900" : "w-2.5 bg-slate-300 hover:bg-slate-400"
             )}
           />
         ))}
       </div>
-      <p className="mt-2 text-center text-sm text-slate-500">
+      <p className="mt-2 text-center font-serif text-sm italic text-slate-500">
         {start + 1}–{Math.min(start + visibleCount, images.length)} / {images.length}
       </p>
     </div>
@@ -204,43 +204,38 @@ function SectionPeriodTitle({ title, index, highlights }: { title: string; index
   const isPresent = end === "현재";
 
   return (
-    <header className="flex gap-4 md:gap-5">
-      <div className="w-1 shrink-0 rounded-full bg-primary-700" aria-hidden="true" />
-      <div className="min-w-0 flex-1">
-        <h2 className="sr-only">{title}</h2>
-        <div className="mb-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <time dateTime={start} className="text-4xl font-semibold tabular-nums leading-none text-slate-900 md:text-5xl">
-            {start}
+    <header className="border-t border-slate-900 pt-8">
+      <h2 className="sr-only">{title}</h2>
+      <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+        이력 {String(index + 1).padStart(2, "0")}
+      </p>
+      <div className="mb-6 mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <time dateTime={start} className="font-serif text-4xl font-semibold tabular-nums leading-none text-slate-900 md:text-6xl">
+          {start}
+        </time>
+        <span className="font-serif text-2xl font-light text-slate-300 md:text-3xl" aria-hidden="true">
+          —
+        </span>
+        {isPresent ? (
+          <span className="font-serif text-4xl font-semibold italic leading-none text-primary-700 md:text-6xl">{end}</span>
+        ) : (
+          <time dateTime={end} className="font-serif text-4xl font-semibold tabular-nums leading-none text-slate-900 md:text-6xl">
+            {end}
           </time>
-          <span className="text-lg font-light text-slate-300 md:text-xl" aria-hidden="true">
-            —
-          </span>
-          {isPresent ? (
-            <span className="text-4xl font-semibold leading-none text-primary-700 md:text-5xl">{end}</span>
-          ) : (
-            <time dateTime={end} className="text-4xl font-semibold tabular-nums leading-none text-slate-900 md:text-5xl">
-              {end}
-            </time>
-          )}
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6 md:gap-10">
-          <p className="shrink-0 text-xs font-medium tracking-[0.18em] text-slate-400">
-            이력 {String(index + 1).padStart(2, "0")}
-          </p>
-          {highlights && highlights.length > 0 ? (
-            <ul className="space-y-1 text-sm leading-relaxed text-slate-600 md:text-base">
-              {highlights.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-primary-500" aria-hidden="true">
-                    ·
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
+        )}
       </div>
+      {highlights && highlights.length > 0 ? (
+        <ul className="grid gap-x-8 gap-y-2 text-sm leading-relaxed text-slate-700 sm:grid-cols-2 md:text-base">
+          {highlights.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="text-slate-400" aria-hidden="true">
+                —
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </header>
   );
 }
@@ -250,9 +245,9 @@ function AboutSectionBlock({ section, index }: { section: AboutSection; index: n
     <article className="space-y-8">
       <div className="space-y-6">
         <SectionPeriodTitle title={section.title} index={index} highlights={section.highlights} />
-        <div className="space-y-3 border-t border-slate-100 pt-6">
+        <div className="space-y-3">
           {section.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="text-base leading-relaxed text-slate-700 md:text-lg md:leading-relaxed">
+            <p key={paragraph} className="max-w-3xl text-base leading-loose text-slate-700 md:text-lg md:leading-loose">
               {paragraph}
             </p>
           ))}
@@ -265,8 +260,12 @@ function AboutSectionBlock({ section, index }: { section: AboutSection; index: n
 
 function DoctorProfile() {
   return (
-    <div className="min-h-screen bg-cream-white">
-      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+    <div className="min-h-screen bg-white">
+      <header className="animate-fade-in border-b border-slate-200 px-6 py-16 text-center md:py-24">
+        <p className="tot-eyebrow">이승욱 대표원장</p>
+        <h1 className="tot-title mt-4">About me</h1>
+      </header>
+      <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
         <div className="space-y-16 stagger-fade-in md:space-y-20">
           {sections.map((section, index) => (
             <AboutSectionBlock key={section.title} section={section} index={index} />

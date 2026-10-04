@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap");
 
 :root {
   font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont,
@@ -16,6 +17,28 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .tot-eyebrow {
+    @apply font-serif text-sm italic tracking-wide text-slate-500 md:text-base;
+  }
+
+  .tot-title {
+    @apply font-serif text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-6xl;
+  }
+
+  .tot-link {
+    @apply relative inline-flex items-center gap-2 font-serif text-sm font-medium text-slate-900 transition-colors hover:text-primary-700;
+  }
+
+  .tot-link::after {
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 content-[''];
+  }
+
+  .tot-link:hover::after {
+    @apply scale-x-100;
+  }
+}
 
 @keyframes fade-in {
   from {

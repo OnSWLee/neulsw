@@ -41,41 +41,46 @@ export default function ReviewsPage({ reviews }: Props) {
         description="경희늘품한의원 환자 후기 — 생약·척추관절 치료 경험을 공유합니다."
         path="/reviews"
       />
-      <div className="min-h-screen bg-cream-white">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <h1 className="mb-12 text-4xl font-bold text-slate-900">Story</h1>
+      <div className="min-h-screen bg-white">
+        <header className="animate-fade-in border-b border-slate-200 px-6 py-16 text-center md:py-24">
+          <p className="tot-eyebrow">생약·척추관절 치료 경험을 공유합니다.</p>
+          <h1 className="tot-title mt-4">Story</h1>
+        </header>
+        <div className="mx-auto max-w-4xl px-6 py-12 md:py-16">
           {reviews.length === 0 ? (
-            <div className="rounded-lg bg-slate-50 p-8 text-slate-600">작성된 후기가 없습니다.</div>
+            <p className="py-16 text-center font-serif text-slate-500">작성된 후기가 없습니다.</p>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="stagger-fade-in divide-y divide-slate-200">
               {reviews.map((review) => (
                 <Link
                   key={review._id}
                   href={`/blog/${review.slug.current}`}
-                  className="group flex flex-col overflow-hidden rounded-lg bg-cream-white shadow-sm transition hover:shadow-md"
+                  className="group flex flex-col-reverse gap-6 py-10 first:pt-0 md:flex-row md:items-center md:gap-10"
                 >
-                  <div className="aspect-video w-full overflow-hidden bg-slate-200">
-                    {review.mainImage ? (
-                      <img
-                        src={urlFor(review.mainImage).width(400).height(300).url()}
-                        alt={review.title}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-xs text-slate-400">이미지 없음</div>
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col p-4">
-                    <h2 className="mb-2 line-clamp-2 text-base font-semibold text-slate-900 group-hover:text-primary-700">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-x-3 text-xs uppercase tracking-[0.15em] text-slate-500">
+                      <span>{review.author || "관리자"}</span>
+                      <span aria-hidden="true">·</span>
+                      <time dateTime={review.publishedAt}>{formatDate(review.publishedAt)}</time>
+                    </div>
+                    <h2 className="mt-3 font-serif text-2xl font-semibold leading-snug text-slate-900 transition-colors group-hover:text-primary-700 md:text-3xl">
                       {review.title}
                     </h2>
-                    <p className="mb-4 flex-1 line-clamp-3 text-sm text-slate-600">{review.excerpt || ""}</p>
-                    <div className="mt-auto flex items-center justify-between text-xs text-slate-500">
-                      <span>{review.author || "관리자"}</span>
-                      <span>{formatDate(review.publishedAt)}</span>
-                    </div>
+                    {review.excerpt ? (
+                      <p className="mt-4 line-clamp-3 text-base leading-relaxed text-slate-600">{review.excerpt}</p>
+                    ) : null}
+                    <span className="tot-link mt-5">더 읽기 →</span>
                   </div>
+                  {review.mainImage ? (
+                    <div className="aspect-[4/3] w-full shrink-0 overflow-hidden bg-slate-100 md:w-64">
+                      <img
+                        src={urlFor(review.mainImage).width(640).height(480).url()}
+                        alt={review.title}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
                 </Link>
               ))}
             </div>

@@ -8,7 +8,7 @@ import { AuthProvider } from "../src/contexts/AuthContext";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <div className="flex min-h-screen flex-col bg-cream-white">
+      <div className="flex min-h-screen flex-col bg-white">
         <NextNavBar />
         <main className="flex-1">
           <PageTransition>

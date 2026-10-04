@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['"Noto Serif KR"', "Georgia", "serif"]
+      },
       colors: {
         primary: {
           DEFAULT: "#1A3C34",

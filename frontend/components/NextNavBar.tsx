@@ -57,22 +57,26 @@ export default function NextNavBar() {
     <header
       className={clsx(
         "sticky top-0 z-40 w-full transition-all",
-        scrolled ? "bg-cream-white/95 shadow-sm backdrop-blur" : "bg-cream-white"
+        "border-b bg-white/95 backdrop-blur",
+        scrolled ? "border-slate-200" : "border-transparent"
       )}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-3">
           <img src="/images/Logo.png" alt="경희늘품한의원 로고" className="h-12 w-12 object-contain" />
-          <div className="text-xl font-semibold text-slate-900 md:text-2xl">경희늘품한의원</div>
+          <div className="font-serif text-xl font-semibold text-slate-900 md:text-2xl">경희늘품한의원</div>
         </Link>
-        <nav className="hidden items-center gap-8 text-sm md:flex">
+        <nav className="hidden items-center gap-8 font-serif text-sm md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={clsx(
-                "transition hover:text-slate-900",
-                isActive(link.href) ? "font-medium text-slate-900" : "text-slate-600"
+                "relative py-1 transition-colors hover:text-slate-900",
+                "after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:bg-slate-900 after:transition-transform after:duration-300",
+                isActive(link.href)
+                  ? "font-medium text-slate-900 after:scale-x-100"
+                  : "text-slate-600 after:scale-x-0 hover:after:scale-x-100"
               )}
             >
               {link.label}
@@ -100,8 +104,8 @@ export default function NextNavBar() {
         </button>
       </div>
       {menuOpen && (
-        <nav className="border-t border-slate-200 bg-cream-white px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-4 text-sm">
+        <nav className="border-t border-slate-200 bg-white px-6 py-4 md:hidden">
+          <div className="flex flex-col gap-4 font-serif text-sm">
             {links.map((link) => (
               <Link
                 key={link.href}

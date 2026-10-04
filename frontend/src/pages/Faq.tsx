@@ -3,26 +3,26 @@ import { FAQ_GROUPS } from "../lib/seo";
 
 function Faq() {
   return (
-    <div className="min-h-screen bg-cream-white">
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <div className="mx-auto max-w-3xl text-center stagger-fade-in">
-          <h1 className="text-3xl font-semibold text-slate-900 md:text-4xl">FAQ</h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
-            경희늘품한의원 진료, 원장, 생약·척추관절 클리닉에 대해 자주 묻는 질문을 모았습니다.
-          </p>
-          <nav aria-label="FAQ 목차" className="mt-8 flex flex-wrap justify-center gap-3">
-            {FAQ_GROUPS.map((group) => (
-              <a
-                key={group.id}
-                href={`#faq-${group.id}`}
-                className="rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-medium text-primary-800 transition hover:bg-primary-100"
-              >
+    <div className="min-h-screen bg-white">
+      <header className="animate-fade-in border-b border-slate-200 px-6 py-16 text-center md:py-24">
+        <p className="tot-eyebrow mx-auto max-w-2xl">
+          경희늘품한의원 진료, 원장, 생약·척추관절 클리닉에 대해 자주 묻는 질문을 모았습니다.
+        </p>
+        <h1 className="tot-title mt-4">FAQ</h1>
+        <nav
+          aria-label="FAQ 목차"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 text-slate-300"
+        >
+          {FAQ_GROUPS.map((group, index) => (
+            <span key={group.id} className="flex items-center gap-x-2">
+              {index > 0 ? <span aria-hidden="true">·</span> : null}
+              <a href={`#faq-${group.id}`} className="tot-link">
                 {group.title}
               </a>
-            ))}
-          </nav>
-        </div>
-      </section>
+            </span>
+          ))}
+        </nav>
+      </header>
 
       {FAQ_GROUPS.map((group, index) => (
         <FaqSection

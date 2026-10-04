@@ -10,21 +10,57 @@ const portableTextComponents: PortableTextComponents = {
     image: ({ value }) => {
       if (!value?.asset) return null;
       return (
-        <figure className="my-8">
+        <figure className="my-10">
           <img
             src={urlFor(value).width(1000).fit("max").auto("format").url()}
             alt={value.alt || ""}
-            className="mx-auto w-full rounded-lg"
+            className="mx-auto w-full"
             loading="lazy"
           />
           {value.alt && (
-            <figcaption className="mt-2 text-center text-sm text-slate-500">
+            <figcaption className="mt-3 text-center font-serif text-sm italic text-slate-500">
               {value.alt}
             </figcaption>
           )}
         </figure>
       );
     },
+  },
+  block: {
+    normal: ({ children }) => <p className="mb-6 leading-loose">{children}</p>,
+    h1: ({ children }) => (
+      <h2 className="mb-5 mt-12 font-serif text-3xl font-semibold text-slate-900">{children}</h2>
+    ),
+    h2: ({ children }) => (
+      <h2 className="mb-5 mt-12 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="mb-4 mt-10 font-serif text-xl font-semibold text-slate-900 md:text-2xl">{children}</h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="mb-3 mt-8 font-serif text-lg font-semibold text-slate-900">{children}</h4>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="my-8 border-l-2 border-slate-900 pl-6 font-serif text-xl italic leading-relaxed text-slate-800">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="mb-6 list-disc space-y-2 pl-6 leading-loose">{children}</ul>,
+    number: ({ children }) => <ol className="mb-6 list-decimal space-y-2 pl-6 leading-loose">{children}</ol>,
+  },
+  marks: {
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        className="text-primary-700 underline underline-offset-4 hover:text-primary-800"
+        target={value?.href?.startsWith("http") ? "_blank" : undefined}
+        rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    ),
   },
 };
 
@@ -116,39 +152,43 @@ export default function BlogDetailPage({ post }: Props) {
           image: imageUrl || undefined,
         }}
       />
-      <div className="min-h-screen bg-cream-white">
-        <article className="mx-auto max-w-4xl stagger-fade-in px-6 py-10">
-          <header className="mb-8">
-            <h1 className="mb-4 text-4xl font-bold text-primary-900">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
-              <span className="font-medium">{post.author || "한의사 이승욱"}</span>
-              <span>•</span>
+      <div className="min-h-screen bg-white">
+        <article className="stagger-fade-in px-6 py-14 md:py-20">
+          <header className="mx-auto max-w-3xl text-center">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 text-xs uppercase tracking-[0.15em] text-slate-500">
+              <span>{post.author || "한의사 이승욱"}</span>
+              <span aria-hidden="true">·</span>
               <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
             </div>
+            <h1 className="mt-5 font-serif text-3xl font-semibold leading-tight text-slate-900 md:text-5xl">
+              {post.title}
+            </h1>
           </header>
 
           {imageUrl && (
-            <div className="mb-8 aspect-video w-full overflow-hidden rounded-lg bg-slate-200">
+            <div className="mx-auto mt-12 max-w-4xl overflow-hidden bg-slate-100">
               <img src={imageUrl} alt={post.title} className="h-full w-full object-cover" loading="lazy" />
             </div>
           )}
 
-          {post.excerpt && (
-            <div className="mb-8 rounded-lg bg-slate-50 p-6">
-              <p className="text-lg text-slate-700">{post.excerpt}</p>
-            </div>
-          )}
+          <div className="mx-auto mt-12 max-w-2xl">
+            {post.excerpt && (
+              <p className="mb-10 border-l-2 border-slate-900 pl-6 font-serif text-lg italic leading-relaxed text-slate-700 md:text-xl">
+                {post.excerpt}
+              </p>
+            )}
 
-          {post.content && post.content.length > 0 && (
-            <div className="prose prose-lg max-w-none text-slate-700">
-              <PortableText value={post.content} components={portableTextComponents} />
-            </div>
-          )}
+            {post.content && post.content.length > 0 && (
+              <div className="text-base text-slate-700 md:text-lg">
+                <PortableText value={post.content} components={portableTextComponents} />
+              </div>
+            )}
 
-          <div className="mt-12 border-t border-slate-200 pt-8">
-            <Link href="/blog" className="font-medium text-primary-700 hover:text-primary-800">
-              ← 블로그 목록으로
-            </Link>
+            <div className="mt-16 border-t border-slate-200 pt-8">
+              <Link href="/blog" className="tot-link">
+                ← 블로그 목록으로
+              </Link>
+            </div>
           </div>
         </article>
       </div>

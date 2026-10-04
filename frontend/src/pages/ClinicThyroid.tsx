@@ -1,15 +1,15 @@
 function ClinicThyroid() {
   return (
-    <div className="min-h-screen bg-cream-white">
+    <div className="min-h-screen bg-white">
       <section className="mx-auto max-w-3xl px-6 py-12 md:py-16">
         <div className="stagger-fade-in">
-          <h1 className="text-center text-3xl font-semibold leading-snug text-slate-900 md:text-4xl">
+          <h1 className="text-center font-serif text-3xl font-semibold leading-snug text-slate-900 md:text-5xl md:leading-tight">
             생약, 우리 몸의 &apos;회복&apos;을 다시 깨우다
           </h1>
 
           <div className="mt-12 space-y-12 md:mt-16 md:space-y-16">
             <article className="space-y-4">
-              <h2 className="text-xl font-bold text-primary-900 md:text-2xl">왜 생약인가요?</h2>
+              <h2 className="border-t border-slate-900 pt-6 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">왜 생약인가요?</h2>
               <p className="text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
                 생약은 단순히 한 가지 성분만 들어있는 약이 아닙니다. 자연에서 온 수십, 수백 가지 유효
                 성분들이 조화롭게 어우러진 &apos;천연의 복합체&apos;입니다. 우리는 이를 통해 몸의
@@ -18,7 +18,7 @@ function ClinicThyroid() {
             </article>
 
             <article className="space-y-4">
-              <h2 className="text-xl font-bold text-primary-900 md:text-2xl">
+              <h2 className="border-t border-slate-900 pt-6 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">
                 완만하고 안전한, &apos;약동학적 완충&apos;의 힘
               </h2>
               <p className="text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
@@ -32,7 +32,7 @@ function ClinicThyroid() {
             </article>
 
             <article className="space-y-4">
-              <h2 className="text-xl font-bold text-primary-900 md:text-2xl">
+              <h2 className="border-t border-slate-900 pt-6 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">
                 질병을 보는 관점, &apos;증상&apos;이 아니라 &apos;시스템&apos;입니다
               </h2>
               <div className="space-y-4">
@@ -50,14 +50,6 @@ function ClinicThyroid() {
                 </p>
               </div>
             </article>
-          </div>
-
-          <div className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-2xl shadow-card md:mt-16">
-            <img
-              src="/images/clinics/clinics%201.png"
-              alt="경희늘품한의원 생약 치료"
-              className="w-full object-cover"
-            />
           </div>
         </div>
       </section>

@@ -11,12 +11,12 @@ function SectionCard({ title, subtitle, children, accent }: Props) {
   return (
     <section
       className={clsx(
-        "rounded-2xl bg-cream-white p-6 shadow-card ring-1 ring-slate-100",
-        accent && "border border-primary-100 ring-primary-50"
+        "border-t border-slate-200 bg-white py-8",
+        accent && "border-slate-900"
       )}
     >
       <div className="mb-4 flex flex-col gap-2">
-        <h2 className="text-xl font-semibold text-primary-900">{title}</h2>
+        <h2 className="font-serif text-2xl font-semibold text-slate-900">{title}</h2>
         {subtitle ? (
           <p className="text-base text-slate-500">{subtitle}</p>
         ) : null}
