@@ -31,7 +31,7 @@ function ClinicCoreImmunity() {
 
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 md:grid-cols-2 md:gap-12 md:pb-16">
         <div>
-          <h2 className="border-t border-slate-900 pt-6 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">02 도담약침</h2>
+          <h2 className="border-t border-slate-900 pt-6 font-serif text-2xl font-semibold text-slate-900 md:text-3xl">02 생약성분 약침치료</h2>
           <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg md:leading-loose">
             척추 및 관절 치료를 위해 생약에서 멸균 및 증류 추출한 약침 성분을 활용해 신경 압박을 완화하고
             조직을 재생시키며 통증을 완화합니다. 스테로이드 성분이 들어가지 않기 때문에 부작용 걱정 없이
@@ -39,7 +39,7 @@ function ClinicCoreImmunity() {
           </p>
         </div>
         <div>
-          <ClinicPhoto src="/images/clinics/SONO02.png" alt="경희늘품한의원 도담약침" />
+          <ClinicPhoto src="/images/clinics/SONO02.png" alt="경희늘품한의원 생약성분 약침치료" />
         </div>
       </section>
 
