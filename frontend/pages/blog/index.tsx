@@ -60,7 +60,7 @@ export default function BlogIndexPage({ posts }: Props) {
               {posts.map((post) => (
                 <Link
                   key={post._id}
-                  href={`/blog/${post.slug.current}`}
+                  href={`/blog/${post.slug.current.trim()}`}
                   className="group flex flex-col-reverse gap-6 py-10 first:pt-0 md:flex-row md:items-center md:gap-10"
                 >
                   <div className="min-w-0 flex-1">

@@ -29,7 +29,7 @@ export const SITE = {
   defaultOgImage: "/images/home/profile.jpg",
   clinics: [
     {
-      path: "/clinics/thyroid",
+      path: "/clinics/herbs",
       name: "생약 클리닉",
       description:
         "생약 치료로 면역·만성 염증·회복력 개선을 돕는 경희늘품한의원 생약 클리닉입니다.",

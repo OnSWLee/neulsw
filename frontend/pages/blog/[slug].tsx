@@ -86,19 +86,35 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   return {
-    paths: (slugs || []).map((item) => ({ params: { slug: item.slug.current } })),
+    paths: (slugs || []).map((item) => ({ params: { slug: item.slug.current.trim() } })),
     fallback: "blocking",
   };
 };
 
+const POST_FIELDS = `_id, title, excerpt, author, publishedAt, _updatedAt, mainImage, slug, content`;
+
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = String(params?.slug || "");
+  const slug = String(params?.slug || "").trim();
   if (!slug) return { notFound: true, revalidate: 60 };
 
-  const query = `*[_type == "blogPost" && slug.current == $slug][0]{
-    _id, title, excerpt, author, publishedAt, _updatedAt, mainImage, slug, content
-  }`;
-  const post = await sanityServerClient.fetch<BlogPost | null>(query, { slug });
+  let post = await sanityServerClient.fetch<BlogPost | null>(
+    `*[_type == "blogPost" && slug.current == $slug][0]{ ${POST_FIELDS} }`,
+    { slug }
+  );
+
+  // 스튜디오에서 슬러그 앞뒤에 공백이 저장된 글도 열리게 한다
+  if (!post) {
+    const all = await sanityServerClient.fetch<{ slug: string }[]>(
+      `*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current }`
+    );
+    const rawSlug = all?.find((item) => item.slug.trim() === slug)?.slug;
+    if (rawSlug) {
+      post = await sanityServerClient.fetch<BlogPost | null>(
+        `*[_type == "blogPost" && slug.current == $rawSlug][0]{ ${POST_FIELDS} }`,
+        { rawSlug }
+      );
+    }
+  }
 
   if (!post) {
     return { notFound: true, revalidate: 60 };
@@ -121,6 +137,7 @@ function formatDate(dateString: string) {
 export default function BlogDetailPage({ post }: Props) {
   if (!post) return null;
 
+  const slug = post.slug.current.trim();
   const imageUrl = post.mainImage ? urlFor(post.mainImage).width(800).url() : null;
   const description = post.excerpt || `${post.title} — ${SITE.name} 블로그`;
 
@@ -129,7 +146,7 @@ export default function BlogDetailPage({ post }: Props) {
       <SeoHead
         title={post.title}
         description={description}
-        path={`/blog/${post.slug.current}`}
+        path={`/blog/${slug}`}
         image={imageUrl || SITE.defaultOgImage}
         type="article"
         jsonLd={{
@@ -148,7 +165,7 @@ export default function BlogDetailPage({ post }: Props) {
             name: SITE.name,
             url: SITE.url,
           },
-          mainEntityOfPage: `${SITE.url}/blog/${post.slug.current}`,
+          mainEntityOfPage: `${SITE.url}/blog/${slug}`,
           image: imageUrl || undefined,
         }}
       />

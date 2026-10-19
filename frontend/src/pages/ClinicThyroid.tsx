@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function ClinicThyroid() {
   return (
     <div className="min-h-screen bg-white">
@@ -50,6 +52,16 @@ function ClinicThyroid() {
                 </p>
               </div>
             </article>
+          </div>
+
+          <div className="mt-16 border-t border-slate-200 pt-10">
+            <Link
+              href="/clinics/gongjindan"
+              className="flex items-center justify-between gap-4 border border-slate-900 px-6 py-5 font-serif text-xl font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-white md:text-2xl"
+            >
+              직접만든 수제 공진단
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>

@@ -7,8 +7,8 @@ type SanityWebhookBody = {
 
 function getSlug(body: SanityWebhookBody): string | null {
   if (!body.slug) return null;
-  if (typeof body.slug === "string") return body.slug;
-  return body.slug.current ?? null;
+  const slug = typeof body.slug === "string" ? body.slug : body.slug.current;
+  return slug?.trim() || null;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const body = (req.body ?? {}) as SanityWebhookBody;
-    const paths = new Set<string>(["/blog", "/reviews"]);
+    const paths = new Set<string>(["/", "/blog", "/reviews"]);
 
     if (body._type === "blogPost") {
       const slug = getSlug(body);

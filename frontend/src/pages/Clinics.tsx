@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const clinicData = [
   {
-    to: "/clinics/thyroid",
+    to: "/clinics/herbs",
     title: "생약 클리닉"
   },
   {

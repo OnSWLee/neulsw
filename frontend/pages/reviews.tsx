@@ -54,7 +54,7 @@ export default function ReviewsPage({ reviews }: Props) {
               {reviews.map((review) => (
                 <Link
                   key={review._id}
-                  href={`/blog/${review.slug.current}`}
+                  href={`/blog/${review.slug.current.trim()}`}
                   className="group flex flex-col-reverse gap-6 py-10 first:pt-0 md:flex-row md:items-center md:gap-10"
                 >
                   <div className="min-w-0 flex-1">

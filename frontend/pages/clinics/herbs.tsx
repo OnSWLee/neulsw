@@ -1,11 +1,9 @@
 import ClinicThyroid from "../../src/pages/ClinicThyroid";
 import SeoHead from "../../components/SeoHead";
-import {
-  breadcrumbJsonLd,
-} from "../../src/lib/seo";
+import { breadcrumbJsonLd } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
-export default function ClinicThyroidPage() {
+export default function ClinicHerbsPage() {
   const clinic = SITE.clinics[0];
   return (
     <>

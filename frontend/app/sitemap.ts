@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // 블로그 포스트 URL 생성
     const blogUrls = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug.current}`,
+      url: `${baseUrl}/blog/${post.slug.current.trim()}`,
       lastModified: new Date(post._updatedAt),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
@@ -66,7 +66,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       },
       {
-        url: `${baseUrl}/clinics/thyroid`,
+        url: `${baseUrl}/clinics/herbs`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      },
+      {
+        url: `${baseUrl}/clinics/gongjindan`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.7,

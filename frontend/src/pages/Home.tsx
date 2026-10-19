@@ -17,7 +17,7 @@ type HomeProps = {
 };
 
 const clinics = [
-  { to: "/clinics/thyroid", title: "생약 클리닉" },
+  { to: "/clinics/herbs", title: "생약 클리닉" },
   { to: "/clinics/immunity", title: "척추관절 클리닉" },
 ];
 
@@ -136,7 +136,7 @@ function Home({ posts = [] }: HomeProps) {
               {posts.map((post) => (
                 <Link
                   key={post._id}
-                  href={`/blog/${post.slug.current}`}
+                  href={`/blog/${post.slug.current.trim()}`}
                   className="group flex flex-col-reverse gap-5 py-8 sm:flex-row sm:items-center sm:gap-8"
                 >
                   <div className="min-w-0 flex-1">

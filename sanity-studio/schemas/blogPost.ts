@@ -19,7 +19,12 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((value) =>
+          value?.current && value.current !== value.current.trim()
+            ? '슬러그 앞뒤에 띄어쓰기(공백)가 있습니다. 지워 주세요.'
+            : true
+        ),
     }),
     defineField({
       name: 'excerpt',

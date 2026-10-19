@@ -31,7 +31,7 @@ docker-compose up --build
 - `/` 홈
 - `/doctor` 원장 소개/칼럼
 - `/clinics` 전문 클리닉 목록
-  - `/clinics/thyroid`
+  - `/clinics/herbs`
   - `/clinics/neuropathy`
   - `/clinics/adaptogen`
 - `/reviews` 후기
