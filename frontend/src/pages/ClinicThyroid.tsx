@@ -6,7 +6,7 @@ function ClinicThyroid() {
       <section className="mx-auto max-w-3xl px-6 py-12 md:py-16">
         <div className="stagger-fade-in">
           <h1 className="text-center font-serif text-3xl font-semibold leading-snug text-slate-900 md:text-5xl md:leading-tight">
-            생약, 우리 몸의 &apos;회복&apos;을 다시 깨우다
+            생약, 우리 몸의 &apos;회복&apos;을 깨우다
           </h1>
 
           <div className="mt-12 space-y-12 md:mt-16 md:space-y-16">
