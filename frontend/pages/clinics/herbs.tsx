@@ -1,9 +1,17 @@
+import type { GetStaticProps } from "next";
 import ClinicThyroid from "../../src/pages/ClinicThyroid";
 import SeoHead from "../../components/SeoHead";
+import type { RelatedPost } from "../../components/RelatedPosts";
+import { fetchClinicPosts } from "../../src/lib/clinicPosts";
 import { breadcrumbJsonLd } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
-export default function ClinicHerbsPage() {
+export const getStaticProps: GetStaticProps<{ posts: RelatedPost[] }> = async () => {
+  const posts = await fetchClinicPosts("herbs");
+  return { props: { posts }, revalidate: 60 };
+};
+
+export default function ClinicHerbsPage({ posts }: { posts: RelatedPost[] }) {
   const clinic = SITE.clinics[0];
   return (
     <>
@@ -31,7 +39,7 @@ export default function ClinicHerbsPage() {
           },
         ]}
       />
-      <ClinicThyroid />
+      <ClinicThyroid posts={posts} />
     </>
   );
 }

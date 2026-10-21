@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const body = (req.body ?? {}) as SanityWebhookBody;
-    const paths = new Set<string>(["/", "/blog", "/reviews"]);
+    const paths = new Set<string>(["/", "/blog", "/reviews", "/clinics/herbs", "/clinics/immunity"]);
 
     if (body._type === "blogPost") {
       const slug = getSlug(body);

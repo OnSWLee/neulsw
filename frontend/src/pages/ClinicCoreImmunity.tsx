@@ -1,3 +1,5 @@
+import RelatedPosts, { type RelatedPost } from "../../components/RelatedPosts";
+
 function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex items-center justify-center bg-slate-100 p-3 md:p-4">
@@ -6,7 +8,7 @@ function ClinicPhoto({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ClinicCoreImmunity() {
+function ClinicCoreImmunity({ posts = [] }: { posts?: RelatedPost[] }) {
   return (
     <div className="min-h-screen bg-white stagger-fade-in">
       <section className="mx-auto max-w-6xl px-6 py-12 text-center md:py-16">
@@ -55,6 +57,7 @@ function ClinicCoreImmunity() {
           />
         </div>
       </section>
+      <RelatedPosts posts={posts} />
     </div>
   );
 }

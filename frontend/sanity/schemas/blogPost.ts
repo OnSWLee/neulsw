@@ -6,6 +6,20 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "clinic",
+      title: "관련 클리닉",
+      description: "고른 클리닉 페이지 하단에 이 글이 표시됩니다.",
+      type: "string",
+      options: {
+        list: [
+          { title: "생약 클리닉", value: "herbs" },
+          { title: "척추관절 클리닉", value: "spine" },
+        ],
+        layout: "radio",
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "postType",
       title: "유형",
       type: "string",

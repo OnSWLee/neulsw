@@ -1,11 +1,17 @@
+import type { GetStaticProps } from "next";
 import ClinicCoreImmunity from "../../src/pages/ClinicCoreImmunity";
 import SeoHead from "../../components/SeoHead";
-import {
-  breadcrumbJsonLd,
-} from "../../src/lib/seo";
+import type { RelatedPost } from "../../components/RelatedPosts";
+import { fetchClinicPosts } from "../../src/lib/clinicPosts";
+import { breadcrumbJsonLd } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
-export default function ClinicImmunityPage() {
+export const getStaticProps: GetStaticProps<{ posts: RelatedPost[] }> = async () => {
+  const posts = await fetchClinicPosts("spine");
+  return { props: { posts }, revalidate: 60 };
+};
+
+export default function ClinicImmunityPage({ posts }: { posts: RelatedPost[] }) {
   const clinic = SITE.clinics[1];
   return (
     <>
@@ -33,7 +39,7 @@ export default function ClinicImmunityPage() {
           },
         ]}
       />
-      <ClinicCoreImmunity />
+      <ClinicCoreImmunity posts={posts} />
     </>
   );
 }

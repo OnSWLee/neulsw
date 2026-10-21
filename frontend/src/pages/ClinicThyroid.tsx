@@ -1,6 +1,7 @@
 import Link from "next/link";
+import RelatedPosts, { type RelatedPost } from "../../components/RelatedPosts";
 
-function ClinicThyroid() {
+function ClinicThyroid({ posts = [] }: { posts?: RelatedPost[] }) {
   return (
     <div className="min-h-screen bg-white">
       <section className="mx-auto max-w-3xl px-6 py-12 md:py-16">
@@ -65,6 +66,7 @@ function ClinicThyroid() {
           </div>
         </div>
       </section>
+      <RelatedPosts posts={posts} />
     </div>
   );
 }
