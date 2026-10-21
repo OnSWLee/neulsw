@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import SeoHead from "../../components/SeoHead";
 import { sanityServerClient, urlFor } from "../../lib/sanityNext";
+import { blogPostJsonLd } from "../../src/lib/seo";
 import { SITE } from "../../src/lib/site";
 
 const portableTextComponents: PortableTextComponents = {
@@ -149,25 +150,14 @@ export default function BlogDetailPage({ post }: Props) {
         path={`/blog/${slug}`}
         image={imageUrl || SITE.defaultOgImage}
         type="article"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: post.title,
+        jsonLd={blogPostJsonLd({
+          title: post.title,
           description,
-          datePublished: post.publishedAt,
-          dateModified: post._updatedAt || post.publishedAt,
-          author: {
-            "@type": "Person",
-            name: post.author || SITE.doctor.name,
-          },
-          publisher: {
-            "@type": "Organization",
-            name: SITE.name,
-            url: SITE.url,
-          },
-          mainEntityOfPage: `${SITE.url}/blog/${slug}`,
-          image: imageUrl || undefined,
-        }}
+          slug,
+          publishedAt: post.publishedAt,
+          updatedAt: post._updatedAt,
+          image: imageUrl,
+        })}
       />
       <div className="min-h-screen bg-white">
         <article className="stagger-fade-in px-6 py-14 md:py-20">

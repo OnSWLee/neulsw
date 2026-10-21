@@ -154,6 +154,99 @@ export function faqPageJsonLd(faqs: FaqItem[]) {
   };
 }
 
+const PHYSICIAN_CREDENTIAL =
+  "이승욱 (한방내과 전문의, 경희대학교 임상한의학 박사 수료)";
+
+function blogPhysicianNode() {
+  return {
+    "@type": "Physician" as const,
+    "@id": `${SITE.url}/doctor#physician`,
+    name: SITE.doctor.name,
+    description: PHYSICIAN_CREDENTIAL,
+    jobTitle: ["대표원장", "한방내과 전문의"],
+    url: absoluteUrl("/doctor"),
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "한방내과 전문의",
+        credentialCategory: "전문의",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "경희대학교 임상한의학 박사 수료",
+        credentialCategory: "학위",
+        recognizedBy: {
+          "@type": "CollegeOrUniversity",
+          name: "경희대학교",
+        },
+      },
+    ],
+    worksFor: {
+      "@id": `${SITE.url}/#clinic`,
+      "@type": "MedicalClinic",
+      name: SITE.name,
+    },
+  };
+}
+
+export function blogPostJsonLd(post: {
+  title: string;
+  description: string;
+  slug: string;
+  publishedAt: string;
+  updatedAt?: string;
+  image?: string | null;
+}) {
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  const reviewedAt = post.updatedAt || post.publishedAt;
+  const physician = blogPhysicianNode();
+  const image = post.image ? absoluteUrl(post.image) : undefined;
+
+  return [
+    {
+      "@context": "https://schema.org",
+      ...physician,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: post.title,
+      description: post.description,
+      inLanguage: "ko-KR",
+      datePublished: post.publishedAt,
+      dateModified: reviewedAt,
+      lastReviewed: reviewedAt,
+      image,
+      author: physician,
+      reviewedBy: physician,
+      publisher: { "@id": `${SITE.url}/#clinic` },
+      isPartOf: { "@id": `${SITE.url}/#website` },
+      mainEntity: { "@id": `${url}#article` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline: post.title,
+      description: post.description,
+      inLanguage: "ko-KR",
+      datePublished: post.publishedAt,
+      dateModified: reviewedAt,
+      image,
+      author: physician,
+      reviewedBy: physician,
+      publisher: {
+        "@type": "Organization",
+        name: SITE.name,
+        url: SITE.url,
+      },
+      mainEntityOfPage: { "@id": `${url}#webpage` },
+    },
+  ];
+}
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
